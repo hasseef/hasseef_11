@@ -1,681 +1,613 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>حصيف — النظام الوطني للتكامل التنموي</title>
-  <meta name="description" content="منصة حصيف: النظام الوطني للتكامل التنموي — ربط التحديات بالحلول والتمويل وقياس الأثر وفق رؤية 2030.">
-  <style>
-    :root{
-      --bg:#1f2227;           /* خلفية رمادي داكن */
-      --bgSoft:#282c34;
-      --card:#2f343c;
-      --text:#ffffff;         /* نص أبيض */
-      --muted:#bfc4cc;
-      --primary:#5AA044;      /* أخضر حصيف */
-      --accent:#8ccf5f;
-      --danger:#ec4b4b;
-      --ok:#30c48d;
-      --warn:#ffb02e;
-      --border:#3a3f47;
-      --shadow:0 8px 24px rgba(0,0,0,.25);
-      --radius:18px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Calibri,"Noto Sans Arabic","Tajawal",Arial,sans-serif}
-    a{color:var(--accent);text-decoration:none}
-    .container{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
-    header{
-      grid-column:1/3; background:#14161a; border-bottom:1px solid var(--border);
-      display:flex; align-items:center; justify-content:space-between; gap:16px; padding:8px 16px; position:sticky; top:0; z-index:10;
-    }
-    .logos{display:flex; align-items:center; gap:14px}
-    .logo{height:38px}
-    .logo.hasseef{height:44px}
-    .badge{font-size:12px;color:var(--muted)}
-    .role-switch{display:flex; gap:8px; align-items:center}
-    .role-switch select{background:var(--card); color:var(--text); border:1px solid var(--border); border-radius:10px; padding:8px 10px}
-    .btn{background:transparent; color:var(--text); border:1px solid var(--border); padding:10px 14px; border-radius:12px; cursor:pointer}
-    .btn.primary{background:var(--primary); border-color:var(--primary); color:#fff; box-shadow:var(--shadow)}
-    .btn.ghost{background:#0000}
-    .btn.white{background:#fff;color:#111}
-    .sidebar{
-      background:var(--bgSoft); border-inline-end:1px solid var(--border); padding:14px; position:sticky; top:62px; height:calc(100vh - 62px); overflow:auto
-    }
-    .nav{display:flex; flex-direction:column; gap:6px}
-    .nav a{display:block; padding:12px 12px; border-radius:12px; color:var(--text); border:1px solid transparent}
-    .nav a.active, .nav a:hover{background:var(--card); border-color:var(--border)}
-    main{padding:18px; min-height:calc(100vh - 62px); background:var(--bg)}
-    .wrap{display:grid; gap:16px}
-    .grid{display:grid; gap:16px}
-    .grid.kpi{grid-template-columns:repeat(4,minmax(0,1fr))}
-    .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow)}
-    .card h3{margin:0 0 8px}
-    .kpi{display:flex;justify-content:space-between;align-items:center}
-    .kpi .n{font-size:28px;font-weight:700}
-    .table{width:100%; border-collapse:collapse; font-size:14px}
-    .table th,.table td{border-bottom:1px solid var(--border); padding:10px; text-align:start}
-    .muted{color:var(--muted)}
-    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
-    .field{display:flex; flex-direction:column; gap:6px; flex:1 min(280px,100%)}
-    input,select,textarea{
-      width:100%; background:#15181d; color:#fff; border:1px solid var(--border); border-radius:12px; padding:10px 12px
-    }
-    textarea{min-height:110px; resize:vertical}
-    .toolbar{display:flex; gap:8px; align-items:center; justify-content:space-between; margin-bottom:8px}
-    .tag{background:#15181d; border:1px solid var(--border); color:var(--muted); border-radius:999px; padding:6px 10px; font-size:12px}
-    .status{padding:.25rem .6rem;border-radius:10px; font-size:12px; border:1px solid var(--border)}
-    .status.ok{background:rgba(48,196,141,.15); color:#9af1cd; border-color:#2a7f64}
-    .status.warn{background:rgba(255,176,46,.12); color:#ffd99a; border-color:#8a6a1b}
-    .status.bad{background:rgba(236,75,75,.12); color:#ffb2b2; border-color:#8a1b1b}
-    .chips{display:flex; gap:6px; flex-wrap:wrap}
-    .stack{display:flex; flex-direction:column; gap:12px}
-    .hidden{display:none !important}
-    .footer{margin-top:24px; color:var(--muted); display:flex; gap:14px; flex-wrap:wrap}
-    /* Responsive */
-    @media (max-width:1024px){ .grid.kpi{grid-template-columns:repeat(2,minmax(0,1fr))} .container{grid-template-columns:1fr} .sidebar{position:static;height:auto} header{grid-column:1/2} }
-    @media (max-width:640px){ .grid.two,.grid.three{grid-template-columns:1fr} .logo{height:30px} .logo.hasseef{height:36px} }
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>حصيف — النظام الوطني للتكامل التنموي</title>
+<meta name="description" content="منصة حصيف: النظام الوطني للتكامل التنموي — ربط التحديات بالحلول والتمويل وقياس الأثر وفق رؤية 2030.">
+<style>
+  :root{
+    --bg:#1f2227; --bgSoft:#282c34; --card:#2f343c; --text:#fff; --muted:#bfc4cc;
+    --primary:#5AA044; --accent:#8ccf5f; --danger:#ec4b4b; --ok:#30c48d; --warn:#ffb02e; --border:#3a3f47;
+    --shadow:0 8px 24px rgba(0,0,0,.25); --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Calibri,"Noto Sans Arabic","Tajawal",Arial,sans-serif}
+  a{color:var(--accent);text-decoration:none}
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 16px;position:sticky;top:0;z-index:10;background:#14161a;border-bottom:1px solid var(--border)}
+  .logos{display:flex;align-items:center;gap:14px}.logo{height:38px}.logo.hasseef{height:44px}
+  .badge{font-size:12px;color:var(--muted)}
+  .btn{background:transparent;color:#fff;border:1px solid var(--border);padding:10px 14px;border-radius:12px;cursor:pointer}
+  .btn.primary{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:var(--shadow)}
+  .container{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
+  .sidebar{background:var(--bgSoft);border-inline-end:1px solid var(--border);padding:14px;position:sticky;top:62px;height:calc(100vh - 62px);overflow:auto}
+  .nav{display:flex;flex-direction:column;gap:6px}.nav a{display:block;padding:12px;border-radius:12px;color:#fff;border:1px solid transparent}
+  .nav a.active,.nav a:hover{background:var(--card);border-color:var(--border)}
+  main{padding:18px;min-height:calc(100vh - 62px)}
+  .wrap{display:grid;gap:16px} .grid{display:grid;gap:16px} .grid.kpi{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))} .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+  .kpi{display:flex;justify-content:space-between;align-items:center}.kpi .n{font-size:28px;font-weight:700}
+  .table{width:100%;border-collapse:collapse;font-size:14px}.table th,.table td{border-bottom:1px solid var(--border);padding:10px;text-align:start}
+  .muted{color:var(--muted)} .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .field{display:flex;flex-direction:column;gap:6px;flex:1 min(280px,100%)} input,select,textarea{width:100%;background:#15181d;color:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 12px}
+  textarea{min-height:110px;resize:vertical}
+  .toolbar{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .tag{background:#15181d;border:1px solid var(--border);color:#bfc4cc;border-radius:999px;padding:6px 10px;font-size:12px}
+  .status{padding:.25rem .6rem;border-radius:10px;font-size:12px;border:1px solid var(--border)}
+  .status.ok{background:rgba(48,196,141,.15);color:#9af1cd;border-color:#2a7f64}
+  .status.warn{background:rgba(255,176,46,.12);color:#ffd99a;border-color:#8a6a1b}
+  .status.bad{background:rgba(236,75,75,.12);color:#ffb2b2;border-color:#8a1b1b}
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+  footer{padding:16px 18px;border-top:1px solid var(--border);background:#16181d}
+  .footer{color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+  @media (max-width:1024px){.grid.kpi{grid-template-columns:repeat(2,1fr)}.container{grid-template-columns:1fr}.sidebar{position:static;height:auto}header{position:sticky}}
+  @media (max-width:640px){.grid.two,.grid.three{grid-template-columns:1fr}.logo{height:30px}.logo.hasseef{height:36px}}
+</style>
 </head>
 <body>
 
-  <!-- ===== Header with Logos (Vision 2030 | Talbiya | Hasseef) ===== -->
-  <header>
-    <div class="logos" style="margin-inline-start:auto">
-      <!-- Vision 2030 (leftmost) -->
-      <img class="logo" alt="Vision 2030" 
-           src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDAgMTIwIDQwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iNDAiIHJ4PSI4IiBmaWxsPSIjMTQxNjFhIi8+PHRleHQgeD0iMTIiIHk9IjI3IiBmaWxsPSIjZGRkIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iNzAwIiBmb250LWZhbWlseT0iU2Vnb2UgVUEsQXJpYWwiPlZpc2lvbiAyMDMwPC90ZXh0Pjwvc3ZnPg=="/>
-      <!-- Talbiya (next to it) -->
-      <img class="logo" alt="Talbiya" 
-           src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA5MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iOTAiIGhlaWdodD0iNDAiIHJ4PSI4IiBmaWxsPSIjMjAyMzI3Ii8+PHRleHQgeD0iMTIiIHk9IjI3IiBmaWxsPSIjY2NjIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iNzAwIj5UYWxiaXlhPC90ZXh0Pjwvc3ZnPg=="/>
-    </div>
-    <div class="logos" style="margin-inline-end:auto">
-      <!-- Hasseef (right) -->
-      <img class="logo hasseef" alt="Hasseef" 
-           src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjQ0IiB2aWV3Qm94PSIwIDAgMTAwIDQ0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNDQiIHJ4PSI4IiBmaWxsPSIjNWFhMDQ0Ii8+PHRleHQgeD0iMTIiIHk9IjI4IiBmaWxsPSIjZmZmIiBmb250LXNpemU9IjE3IiBmb250LXdlaWdodD0iNzAwIj5IQVNTRUVGPC90ZXh0Pjwvc3ZnPg=="/>
-    </div>
-
-    <!-- Role & Quick Actions -->
-    <div class="role-switch">
-      <span class="badge">الدور:</span>
-      <select id="roleSelect" title="الدور">
-        <option value="viewer">عارض</option>
-        <option value="manager">مدير</option>
-        <option value="gov">حكومي</option>
-        <option value="emirate">إمارة</option>
-        <option value="private">خاص</option>
-        <option value="ngo">غير ربحي</option>
-        <option value="uni">جامعة</option>
-        <option value="funder">مانح</option>
-        <option value="speaker">متحدث/مدرب</option>
-        <option value="admin">إدارة المنصة</option>
-      </select>
-      <button class="btn" onclick="exportCSV()">تصدير CSV</button>
-      <button class="btn" onclick="exportPDF()">تصدير PDF</button>
-    </div>
-  </header>
-
-  <div class="container">
-    <!-- ===== Sidebar ===== -->
-    <aside class="sidebar">
-      <nav class="nav" id="sideNav">
-        <a href="#dashboard" class="active">لوحة رئيسية</a>
-        <a href="#map">الخريطة</a>
-        <a href="#stories">قصص الأثر</a>
-        <a href="#reports">التقارير</a>
-        <a href="#ai">AI Lab</a>
-        <a href="#integrations">التكاملات</a>
-        <a href="#wallet">المحفظة</a>
-        <a href="#support">الدعم والتذاكر</a>
-        <div style="height:8px"></div>
-        <span class="badge">الحسابات</span>
-        <a href="#account-emirate">إمارة المنطقة</a>
-        <a href="#account-gov">جهة حكومية</a>
-        <a href="#account-private">قطاع خاص</a>
-        <a href="#account-ngo">قطاع غير ربحي</a>
-        <a href="#account-uni">جامعة</a>
-        <a href="#account-person">أفراد</a>
-        <a href="#account-funder">جهة مانحة</a>
-        <a href="#account-speaker">متحدث/مدرب</a>
-        <a href="#admin-center">مركز الإدارة</a>
-      </nav>
-    </aside>
-
-    <!-- ===== Main ===== -->
-    <main id="app">
-      <!-- dynamic content -->
-    </main>
+<!-- ===== Header ===== -->
+<header>
+  <!-- يسار: رؤية 2030 + تلبية -->
+  <div class="logos" style="margin-inline-start:auto">
+    <img class="logo" alt="Vision 2030" id="logo-vision"/>
+    <img class="logo" alt="Talbiya" id="logo-talbiya"/>
   </div>
 
-  <footer style="padding:16px 18px;border-top:1px solid var(--border); background:#16181d">
-    <div class="footer">
-      <span>© حصيف — منصة التكامل التنموي</span>
-      <a href="#about">حول المنصة</a>
-      <a href="#policies">السياسات</a>
-      <a href="#privacy">الخصوصية</a>
-      <a href="#terms">اتفاقية الاستخدام</a>
-      <a href="#contact">الدعم الفني</a>
+  <!-- يمين: حصيف -->
+  <div class="logos" style="margin-inline-end:auto">
+    <img class="logo hasseef" alt="Hasseef" id="logo-hasseef"/>
+    <div>
+      <div style="font-weight:700">حَصيف</div>
+      <div class="badge">منصة تكامل تنموي لتسريع تحقيق مستهدفات رؤية 2030</div>
     </div>
-  </footer>
+  </div>
 
-  <!-- ===== App Script ===== -->
-  <script>
-    /************ Utilities ************/
-    const $ = (sel,root=document)=>root.querySelector(sel);
-    const $$ = (sel,root=document)=>Array.from(root.querySelectorAll(sel));
+  <!-- أدوار وتصدير -->
+  <div class="row">
+    <span class="badge">الدور:</span>
+    <select id="roleSelect" title="الدور">
+      <option value="viewer">عارض</option>
+      <option value="manager">مدير</option>
+      <option value="gov">حكومي</option>
+      <option value="emirate">إمارة</option>
+      <option value="private">خاص</option>
+      <option value="ngo">غير ربحي</option>
+      <option value="uni">جامعة</option>
+      <option value="funder">مانح</option>
+      <option value="speaker">متحدث/مدرب</option>
+      <option value="admin">إدارة المنصة</option>
+    </select>
+    <button class="btn" onclick="exportCSV()">CSV</button>
+    <button class="btn" onclick="exportReportHTML()">Report</button>
+  </div>
+</header>
 
-    const LS = {
-      get(k,def){ try{ return JSON.parse(localStorage.getItem(k) ?? JSON.stringify(def)); }catch(_){return def} },
-      set(k,v){ localStorage.setItem(k,JSON.stringify(v)); }
+<div class="container">
+  <!-- ===== Sidebar ===== -->
+  <aside class="sidebar">
+    <nav class="nav" id="sideNav">
+      <a href="#dashboard" class="active">لوحة رئيسية</a>
+      <a href="#map">الخريطة</a>
+      <a href="#stories">قصص الأثر</a>
+      <a href="#reports">التقارير</a>
+      <a href="#ai">AI Lab</a>
+      <a href="#integrations">التكاملات</a>
+      <a href="#wallet">المحفظة</a>
+      <a href="#support">الدعم والتذاكر</a>
+      <div style="height:8px"></div>
+      <span class="badge">الحسابات</span>
+      <a href="#account-emirate">إمارة المنطقة</a>
+      <a href="#account-gov">جهة حكومية</a>
+      <a href="#account-private">قطاع خاص</a>
+      <a href="#account-ngo">قطاع غير ربحي</a>
+      <a href="#account-uni">جامعة</a>
+      <a href="#account-person">أفراد</a>
+      <a href="#account-funder">جهة مانحة</a>
+      <a href="#account-speaker">متحدث/مدرب</a>
+      <a href="#admin-center">مركز الإدارة</a>
+    </nav>
+  </aside>
+
+  <!-- ===== Main ===== -->
+  <main id="app"></main>
+</div>
+
+<footer>
+  <div class="footer">
+    <span>© حصيف — منصة التكامل التنموي</span>
+    <a href="#about">حول المنصة</a>
+    <a href="#policies">السياسات</a>
+    <a href="#privacy">الخصوصية</a>
+    <a href="#terms">اتفاقية الاستخدام</a>
+    <a href="#contact">الدعم الفني</a>
+  </div>
+</footer>
+
+<script>
+/* ===========================================
+   1) تخزين الشعارات محليًا (Base64) — بدون ملفات خارجية
+   - ارفع صور PNG مرة واحدة من مركز الإدارة → تحميل الشعارات.
+   - تُحفَظ في LocalStorage وتُستخدم تلقائيًا كل مرة.
+=========================================== */
+const LOGO_KEYS = { vision:'HASSEEF_LOGO_VISION', talbiya:'HASSEEF_LOGO_TALBIYA', hasseef:'HASSEEF_LOGO_HASSEEF' };
+
+// fallback SVGs خفيفة لو لم تُحمّل بعد
+const FALLBACK = {
+  vision: 'data:image/svg+xml;base64,'+btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="110" height="36"><rect width="110" height="36" rx="8" fill="#14161a"/><text x="10" y="23" fill="#ddd" font-family="Tahoma" font-size="14" font-weight="700">VISION 2030</text></svg>`),
+  talbiya:'data:image/svg+xml;base64,'+btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="90" height="36"><rect width="90" height="36" rx="8" fill="#202327"/><text x="10" y="22" fill="#ccc" font-family="Tahoma" font-size="14" font-weight="700">TALBIYA</text></svg>`),
+  hasseef:'data:image/svg+xml;base64,'+btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="100" height="44"><rect width="100" height="44" rx="8" fill="#5AA044"/><text x="12" y="28" fill="#fff" font-family="Tahoma" font-size="16" font-weight="700">HASSEEF</text></svg>`)
+};
+function setLogosFromStorage(){
+  const v = localStorage.getItem(LOGO_KEYS.vision);
+  const t = localStorage.getItem(LOGO_KEYS.talbiya);
+  const h = localStorage.getItem(LOGO_KEYS.hasseef);
+  document.getElementById('logo-vision').src  = v ? `data:image/png;base64,${v}` : FALLBACK.vision;
+  document.getElementById('logo-talbiya').src = t ? `data:image/png;base64,${t}` : FALLBACK.talbiya;
+  document.getElementById('logo-hasseef').src = h ? `data:image/png;base64,${h}` : FALLBACK.hasseef;
+}
+
+/* ========== Utilities & RBAC ========== */
+const $=(s,r=document)=>r.querySelector(s); const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+const LS={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k)??JSON.stringify(d))}catch{return d}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
+const RBAC={
+  viewer:{create:false,edit:false,delete:false,export:true},
+  manager:{create:true,edit:true,delete:true,export:true},
+  gov:{create:true,edit:true,delete:false,export:true},
+  emirate:{create:true,edit:true,delete:false,export:true},
+  private:{create:true,edit:true,delete:false,export:true},
+  ngo:{create:true,edit:true,delete:false,export:true},
+  uni:{create:true,edit:true,delete:false,export:true},
+  funder:{create:true,edit:true,delete:false,export:true},
+  speaker:{create:true,edit:true,delete:false,export:true},
+  admin:{create:true,edit:true,delete:true,export:true}
+};
+function role(){ return (LS.get('me',{role:'viewer'}).role)||'viewer'; }
+function setRole(v){ const me=LS.get('me',{}); me.role=v; LS.set('me',me); }
+function can(a){ return !!(RBAC[role()] && RBAC[role()][a]); }
+$('#roleSelect').value = role(); $('#roleSelect').onchange = e=>{ setRole(e.target.value); render(); };
+
+/* ========== Seed (local) ========== */
+function defaultSeed(){
+  return {
+    projects:[
+      {id:1,title:'مختبر ابتكار اجتماعي',sector:'جامعات',region:'حائل',program:'جودة الحياة',budget:250000,status:'نشط',kpi:'QoL'},
+      {id:2,title:'تمكين الأسر المنتجة',sector:'غير ربحي',region:'الرياض',program:'التحول الوطني',budget:180000,status:'قيد المراجعة',kpi:'Jobs'},
+      {id:3,title:'مركز قيادة تطوعي',sector:'حكومي',region:'مكة',program:'تنمية القدرات البشرية',budget:320000,status:'نشط',kpi:'HCD'}
+    ],
+    facilities:[{id:11,name:'قاعة جامعة',city:'الرياض',capacity:600,available:true},{id:12,name:'مسرح بلدي',city:'حائل',capacity:400,available:false}],
+    stories:[{id:21,title:'قصة أثر: قرية منتجة',by:'جمعية تنموية',region:'القصيم',impact:'+320 فرصة'}],
+    events:[], grants:[], jobs:[], volunteer:[], partners:[], speakers:[], research:[],
+    wallet:{balance:920000,txs:[{id:'TX-1001',type:'تمويل',amount:250000,to:'جمعية بناء',date:'2025-05-02'}]},
+    tickets:[{id:'SUP-4312',subject:'مساعدة رفع مشروع',status:'مفتوح',date:'2025-07-10'}],
+    users:[{id:100,name:'Admin',email:'admin@hasseef.sa',role:'admin'}],
+    keys:[], hooks:[]
+  };
+}
+if(!LS.get('SEED')) LS.set('SEED', defaultSeed());
+
+/* ========== Router ========== */
+const routes={}; const app=$('#app');
+function route(hash,fn){ routes[hash]=fn; }
+function go(hash){ location.hash=hash; }
+function render(){
+  const hash=location.hash||'#dashboard';
+  $$('#sideNav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')===hash));
+  (routes[hash]||notFound)(app);
+}
+function notFound(el){ el.innerHTML = `<div class="card"><h3>غير موجود</h3><p class="muted">المسار غير متوفر.</p></div>`; }
+window.addEventListener('hashchange',render); window.addEventListener('load',()=>{ setLogosFromStorage(); render(); });
+
+/* ========== Widgets ========== */
+const Pill=(t,cls='tag')=>`<span class="${cls}">${t}</span>`;
+const Toolbar=(title,extra='')=>`<div class="toolbar"><h3 style="margin:0">${title}</h3><div class="row">${extra}</div></div>`;
+function table(items, cols){ return `<table class="table"><thead><tr>${cols.map(c=>`<th>${c.label}</th>`).join('')}</tr></thead><tbody>${items.map(it=>`<tr>${cols.map(c=>`<td>${(typeof c.cell==='function'?c.cell(it):it[c.key])??''}</td>`).join('')}</tr>`).join('')}</tbody></table>`; }
+
+/* ========== Exports ========== */
+function exportCSV(){
+  const data = LS.get('SEED').projects;
+  const rows = [['ID','Title','Sector','Region','Program','Budget','Status','KPI']].concat(
+    data.map(p=>[p.id,p.title,p.sector,p.region,p.program,p.budget,p.status,p.kpi])
+  );
+  const csv = rows.map(r=>r.map(x=>`"${(x??'').toString().replaceAll('"','""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='projects.csv'; a.click();
+}
+function exportReportHTML(){
+  const d=LS.get('SEED').projects;
+  const html = `<html dir="rtl"><head><meta charset="utf-8"><title>تقرير حصيف</title></head><body style="font-family:Tahoma,Arial;line-height:1.6"><h2>تقرير المشاريع</h2><p>إجمالي: ${d.length}</p><table border="1" cellspacing="0" cellpadding="6"><tr><th>ID</th><th>العنوان</th><th>القطاع</th><th>المنطقة</th><th>البرنامج</th><th>الميزانية</th><th>الحالة</th></tr>${d.map(p=>`<tr><td>${p.id}</td><td>${p.title}</td><td>${p.sector}</td><td>${p.region}</td><td>${p.program}</td><td>${p.budget}</td><td>${p.status}</td></tr>`).join('')}</table></body></html>`;
+  const blob=new Blob([html],{type:'application/octet-stream'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='report.html'; a.click();
+}
+
+/* ========== Forms (مختصرة ومتكاملة) ========== */
+function modal(title, body){ const root=document.createElement('div'); root.innerHTML=`<div style="position:fixed;inset:0;background:rgba(0,0,0,.5);display:grid;place-items:center;z-index:50"><div class="card" style="width:min(860px,95vw);max-height:86vh;overflow:auto"><div class="toolbar"><h3 style="margin:0">${title}</h3><button class="btn" onclick="this.closest('div[style]').remove()">✕</button></div><div>${body}</div></div></div>`; document.body.appendChild(root); return root; }
+function fieldRow(obj){ return `<div class="row">${obj.map(f=>`<div class="field">${f}</div>`).join('')}</div>`; }
+
+function formProject(){
+  const el = modal('إنشاء مشروع', `
+    ${fieldRow([`<label>اسم المشروع*</label><input id="p_title" maxlength="120" required placeholder="مثال: مبادرة تمكين الأسر المنتجة"/>`,
+                `<label>القطاع*</label><select id="p_sector"><option>حكومي</option><option>خاص</option><option>غير ربحي</option><option>جامعات</option></select>`,
+                `<label>المنطقة*</label><select id="p_region"><option>الرياض</option><option>مكة</option><option>حائل</option><option>الشرقية</option></select>`])}
+    ${fieldRow([`<label>برنامج الرؤية</label><select id="p_program"><option>جودة الحياة</option><option>التحول الوطني</option><option>تنمية القدرات البشرية</option><option>تطوير القطاع المالي</option></select>`,
+                `<label>الميزانية (ر.س)</label><input id="p_budget" type="number" min="0" step="1000" placeholder="100000"/>`,
+                `<label>الحالة</label><select id="p_status"><option>مسودة</option><option selected>نشط</option><option>قيد المراجعة</option><option>مكتمل</option></select>`])}
+    ${fieldRow([`<label>الجهة المنفذة</label><input id="p_org" placeholder="اسم الجهة"/>`,
+                `<label>نطاق التنفيذ</label><input id="p_scope" placeholder="محلي/وطني/إقليمي"/>`,
+                `<label>مؤشرات (KPIs)</label><input id="p_kpis" placeholder="عدد المستفيدين؛ التكلفة لكل مستفيد..."/>`])}
+    ${fieldRow([`<label>وصف مختصر</label><textarea id="p_desc" maxlength="600"></textarea>`])}
+    ${fieldRow([`<button class="btn primary" id="p_save">حفظ</button>`, `<button class="btn" onclick="this.closest('div[style]').remove()">إلغاء</button>`])}
+  `);
+  $('#p_save', el).onclick = ()=>{
+    const p={
+      id:Date.now(),
+      title:$('#p_title',el).value.trim(),
+      sector:$('#p_sector',el).value, region:$('#p_region',el).value, program:$('#p_program',el).value,
+      budget:+($('#p_budget',el).value||0), status:$('#p_status',el).value, org:$('#p_org',el).value,
+      scope:$('#p_scope',el).value, kpi:$('#p_kpis',el).value, desc:$('#p_desc',el).value
     };
+    if(!p.title) return alert('اسم المشروع مطلوب'); const db=LS.get('SEED'); db.projects.unshift(p); LS.set('SEED',db); el.remove(); render();
+  };
+}
+function formEvent(){
+  const el = modal('إنشاء فعالية', `
+    ${fieldRow([`<label>اسم الفعالية*</label><input id="e_title" required/>`,
+                `<label>التاريخ*</label><input id="e_date" type="date" required/>`,
+                `<label>المدينة</label><input id="e_city" placeholder="الرياض"/>`])}
+    ${fieldRow([`<label>الموقع/المرفق</label><input id="e_venue" placeholder="قاعة/مسرح"/>`,
+                `<label>النوع</label><select id="e_type"><option>ملتقى</option><option>ورشة</option><option>مؤتمر</option></select>`,
+                `<label>السعة</label><input id="e_capacity" type="number" min="1" step="10"/>`])}
+    ${fieldRow([`<label>وصف</label><textarea id="e_desc"></textarea>`])}
+    ${fieldRow([`<button class="btn primary" id="e_save">حفظ</button>`, `<button class="btn" onclick="this.closest('div[style]').remove()">إلغاء</button>`])}
+  `);
+  $('#e_save', el).onclick = ()=>{
+    const v={id:Date.now(), title:$('#e_title',el).value.trim(), date:$('#e_date',el).value, city:$('#e_city',el).value,
+             venue:$('#e_venue',el).value, type:$('#e_type',el).value, capacity:+($('#e_capacity',el).value||0),
+             desc:$('#e_desc',el).value};
+    if(!v.title||!v.date) return alert('العنوان والتاريخ مطلوبان'); const db=LS.get('SEED'); db.events.unshift(v); LS.set('SEED',db); el.remove(); render();
+  };
+}
+function formFacility(){
+  const el = modal('إضافة مرفق', `
+    ${fieldRow([`<label>اسم المرفق*</label><input id="f_name" required/>`,
+                `<label>المدينة</label><input id="f_city"/>`,
+                `<label>السعة</label><input id="f_capacity" type="number" min="1"/>`])}
+    ${fieldRow([`<label>متاح للحجز؟</label><select id="f_available"><option value="true">نعم</option><option value="false">لا</option></select>`,
+                `<label>نوع المرفق</label><select id="f_type"><option>قاعة</option><option>مسرح</option><option>مختبر</option><option>ملعب</option></select>`,
+                `<label>رسوم (إن وجدت)</label><input id="f_fee" type="number" min="0" step="10"/>`])}
+    ${fieldRow([`<button class="btn primary" id="f_save">حفظ</button>`, `<button class="btn" onclick="this.closest('div[style]').remove()">إلغاء</button>`])}
+  `);
+  $('#f_save', el).onclick = ()=>{
+    const x={id:Date.now(), name:$('#f_name',el).value.trim(), city:$('#f_city',el).value, capacity:+($('#f_capacity',el).value||0),
+             available:$('#f_available',el).value==='true', type:$('#f_type',el).value, fee:+($('#f_fee',el).value||0)};
+    if(!x.name) return alert('اسم المرفق مطلوب'); const db=LS.get('SEED'); db.facilities.unshift(x); LS.set('SEED',db); el.remove(); render();
+  };
+}
+function formGrant(){
+  const el = modal('دعوة تمويل/منحة', `
+    ${fieldRow([`<label>العنوان*</label><input id="g_title" required/>`,
+                `<label>الفئة المستهدفة</label><select id="g_audience"><option>حكومي</option><option>خاص</option><option>غير ربحي</option><option>جامعات</option></select>`,
+                `<label>السقف المالي (ر.س)</label><input id="g_cap" type="number" min="0" step="10000"/>`])}
+    ${fieldRow([`<label>آخر موعد للتقديم</label><input id="g_deadline" type="date"/>`,
+                `<label>اشتراطات أساسية</label><textarea id="g_rules" placeholder="خطة عمل؛ مؤشرات أثر؛ استدامة…"></textarea>`])}
+    ${fieldRow([`<button class="btn primary" id="g_save">نشر الدعوة</button>`, `<button class="btn" onclick="this.closest('div[style]').remove()">إلغاء</button>`])}
+  `);
+  $('#g_save', el).onclick=()=>{
+    const g={id:Date.now(), title:$('#g_title',el).value.trim(), audience:$('#g_audience',el).value,
+             cap:+($('#g_cap',el).value||0), deadline:$('#g_deadline',el).value, rules:$('#g_rules',el).value, status:'مفتوحة'};
+    if(!g.title) return alert('العنوان مطلوب'); const db=LS.get('SEED'); db.grants.unshift(g); LS.set('SEED',db); el.remove(); render();
+  };
+}
+function formSpeaker(){
+  const el = modal('متحدث/مدرب', `
+    ${fieldRow([`<label>الاسم*</label><input id="sp_name" required/>`,
+                `<label>التخصص</label><input id="sp_spec"/>`,
+                `<label>رابط السيرة</label><input id="sp_cv" placeholder="https://..." />`])}
+    ${fieldRow([`<label>المدينة</label><input id="sp_city"/>`,
+                `<label>أتعاب تقديرية</label><input id="sp_fee" type="number" min="0" step="100"/>`])}
+    ${fieldRow([`<button class="btn primary" id="sp_save">حفظ</button>`, `<button class="btn" onclick="this.closest('div[style]').remove()">إلغاء</button>`])}
+  `);
+  $('#sp_save', el).onclick=()=>{
+    const s={id:Date.now(), name:$('#sp_name',el).value.trim(), spec:$('#sp_spec',el).value, cv:$('#sp_cv',el).value, city:$('#sp_city',el).value, fee:+($('#sp_fee',el).value||0)};
+    if(!s.name) return alert('الاسم مطلوب'); const db=LS.get('SEED'); (db.speakers=db.speakers||[]).unshift(s); LS.set('SEED',db); el.remove(); render();
+  };
+}
 
-    const R = { // RBAC matrix (can user perform action?)
-      viewer:{create:false, edit:false, delete:false, export:true},
-      manager:{create:true, edit:true, delete:true, export:true},
-      gov:{create:true, edit:true, delete:false, export:true},
-      emirate:{create:true, edit:true, delete:false, export:true},
-      private:{create:true, edit:true, delete:false, export:true},
-      ngo:{create:true, edit:true, delete:false, export:true},
-      uni:{create:true, edit:true, delete:false, export:true},
-      funder:{create:true, edit:true, delete:false, export:true},
-      speaker:{create:true, edit:true, delete:false, export:true},
-      admin:{create:true, edit:true, delete:true, export:true}
-    };
-    function role(){ return (LS.get('me',{role:'viewer'})||{}).role || 'viewer'; }
-    function setRole(v){ const me = LS.get('me',{}); me.role=v; LS.set('me',me); }
-    function can(action){ return !!(R[role()] && R[role()][action]); }
+/* ========== Sections (Routes) ========== */
+route('#dashboard', el=>{
+  const db = LS.get('SEED').projects;
+  const facilities = LS.get('SEED').facilities;
+  el.innerHTML = `
+    <div class="wrap">
+      <div class="grid kpi">
+        <div class="card kpi"><div><div class="muted">المشاريع</div><div class="n">${db.length}</div></div>${Pill('نشط','status ok')}</div>
+        <div class="card kpi"><div><div class="muted">المرافق</div><div class="n">${facilities.length}</div></div>${Pill('جاهز','status')}</div>
+        <div class="card kpi"><div><div class="muted">الفعاليات</div><div class="n">${LS.get('SEED').events.length}</div></div>${Pill('قريبًا','status warn')}</div>
+        <div class="card kpi"><div><div class="muted">المنح</div><div class="n">${LS.get('SEED').grants.length}</div></div>${Pill('مفتوح','status')}</div>
+      </div>
 
-    /************ Mock Seed (can be swapped with real APIs) ************/
-    const Seed = LS.get('seed', {
-      kpis:{ projects:128, entities:742, volunteers:5340, funding: 26_400_000 },
-      projects:[
-        {id:1, title:'تأهيل مرافق شبابية', sector:'غير ربحي', region:'حائل', status:'جاري', impact:'مجتمعي', kpi:'2030: جودة الحياة'},
-        {id:2, title:'توظيف 200 خريج', sector:'خاص', region:'الرياض', status:'مكتمل', impact:'اقتصادي', kpi:'2030: سوق العمل'},
-        {id:3, title:'فعالية وطنيّة كبرى', sector:'حكومي', region:'مكة', status:'مجدول', impact:'ثقافي', kpi:'2030: الثقافة والترفيه'}
-      ],
-      facilities: [
-        {id:11,name:'قاعة مؤتمرات - جامعة', city:'الرياض', capacity:600, avail:true},
-        {id:12,name:'مسرح بلدي', city:'حائل', capacity:400, avail:false}
-      ],
-      stories:[
-        {title:'قصة أثر: تمكين قرية منتجة', by:'جمعية تنموية', region:'القصيم', impact:'+320 فرصة'},
-        {title:'قصة أثر: مختبر ابتكار شبابي', by:'شركة تقنية', region:'الشرقية', impact:'12 منتج'}
-      ],
-      users: [
-        {id:100, name:'مسؤول نظام', email:'admin@hasseef.sa', role:'admin'},
-        {id:101, name:'حساب إمارة', email:'emirate@hasseef.sa', role:'emirate'},
-        {id:102, name:'وزارة قطاع', email:'gov@hasseef.sa', role:'gov'}
-      ],
-      wallet:{ balance: 920000, txs:[
-        {id:'TX-1001', type:'تمويل', amount:250000, to:'جمعية بناء', date:'2025-05-02'},
-        {id:'TX-1002', type:'رعاية', amount:55000, to:'فعالية وطنية', date:'2025-06-11'}
-      ]},
-      tickets:[
-        {id:'SUP-4312', subject:'طلب مساعدة في رفع مشروع', status:'مفتوح', date:'2025-07-10'},
-        {id:'SUP-4316', subject:'استفسار عن المحفظة', status:'محلول', date:'2025-08-02'}
-      ]
-    });
-
-    /************ Simple Router ************/
-    const routes = {};
-    function route(hash, fn){ routes[hash]=fn; }
-    function go(hash){ location.hash=hash; }
-    function render(){ 
-      const hash = location.hash || '#dashboard';
-      $$('#sideNav a').forEach(a=>a.classList.toggle('active', a.getAttribute('href')===hash));
-      (routes[hash]||notFound)( $('#app') );
-    }
-    function notFound(el){ el.innerHTML = `<div class="card"><h3>غير موجود</h3><p class="muted">المسار المطلوب غير متوفر.</p></div>`; }
-    window.addEventListener('hashchange',render);
-    window.addEventListener('load',()=>{
-      const sel = $('#roleSelect');
-      sel.value = role();
-      sel.addEventListener('change', e=>{ setRole(e.target.value); applyRoleUI(); render(); });
-      if(!LS.get('seed')) LS.set('seed',Seed);
-      applyRoleUI(); render();
-    });
-    function applyRoleUI(){
-      document.body.dataset.role = role();
-    }
-
-    /************ Exports (CSV / PDF minimal) ************/
-    function exportCSV(){
-      if(!can('export')) return alert('صلاحية غير متاحة');
-      const rows = [['ID','العنوان','القطاع','المنطقة','الحالة','الأثر','KPI']].concat(
-        Seed.projects.map(p=>[p.id,p.title,p.sector,p.region,p.status,p.impact,p.kpi])
-      );
-      const csv = rows.map(r=>r.map(x=>`"${(x??'').toString().replaceAll('"','""')}"`).join(',')).join('\n');
-      const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
-      const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='projects.csv'; a.click();
-    }
-    async function exportPDF(){
-      if(!can('export')) return alert('صلاحية غير متاحة');
-      const html = `
-        <html dir="rtl"><head><meta charset="utf-8"><title>تقرير حصيف</title></head>
-        <body style="font-family:Tahoma,Arial;line-height:1.6">
-          <h2>تقرير المشاريع</h2>
-          <p>إجمالي المشاريع: ${Seed.projects.length}</p>
-          <table border="1" cellspacing="0" cellpadding="6">
-            <tr><th>ID</th><th>العنوان</th><th>القطاع</th><th>المنطقة</th><th>الحالة</th><th>الأثر</th></tr>
-            ${Seed.projects.map(p=>`<tr><td>${p.id}</td><td>${p.title}</td><td>${p.sector}</td><td>${p.region}</td><td>${p.status}</td><td>${p.impact}</td></tr>`).join('')}
-          </table>
-        </body></html>`;
-      const blob = new Blob([html],{type:'application/octet-stream'}); // بسيط بديل jsPDF
-      const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='report.html'; a.click();
-    }
-
-    /************ UI Helpers ************/
-    const Pill = (t,cls='tag')=>`<span class="${cls}">${t}</span>`;
-    const Toolbar = (title, extra='')=>`
-      <div class="toolbar">
-        <h3 style="margin:0">${title}</h3>
-        <div class="row">${extra}</div>
-      </div>`;
-    function table(items, cols){
-      return `<table class="table">
-        <thead><tr>${cols.map(c=>`<th>${c.label}</th>`).join('')}</tr></thead>
-        <tbody>
-          ${items.map(it=>`<tr>${cols.map(c=>`<td>${(typeof c.cell==='function'? c.cell(it): it[c.key]) ?? ''}</td>`).join('')}</tr>`).join('')}
-        </tbody>
-      </table>`;
-    }
-
-    /************ Sections ************/
-    route('#dashboard', el=>{
-      el.innerHTML = `
-        <div class="wrap">
-          <div class="grid kpi">
-            <div class="card kpi"><div><div class="muted">المشاريع</div><div class="n">${Seed.kpis.projects}</div></div>${Pill('نشط','status ok')}</div>
-            <div class="card kpi"><div><div class="muted">الجهات</div><div class="n">${Seed.kpis.entities}</div></div>${Pill('+ تكامل','status')}</div>
-            <div class="card kpi"><div><div class="muted">المتطوعون</div><div class="n">${Seed.kpis.volunteers}</div></div>${Pill('سجلات','status')}</div>
-            <div class="card kpi"><div><div class="muted">التمويل (ريال)</div><div class="n">${Seed.kpis.funding.toLocaleString()}</div></div>${Pill('مستمر','status warn')}</div>
-          </div>
-
-          <div class="grid two">
-            <div class="card">
-              ${Toolbar('المشاريع الأحدث', can('create')?`<button class="btn primary" onclick="openProjectForm()">+ مشروع</button>`:'')}
-              ${table(Seed.projects,[
-                {key:'id',label:'#'},
-                {key:'title',label:'العنوان'},
-                {key:'sector',label:'القطاع'},
-                {key:'region',label:'المنطقة'},
-                {key:'status',label:'الحالة',cell:p=>`<span class="status ${p.status==='مكتمل'?'ok':(p.status==='مجدول'?'warn':'') }">${p.status}</span>`}
-              ])}
-            </div>
-            <div class="card">
-              ${Toolbar('المرافق المتاحة')}
-              ${table(Seed.facilities,[
-                {key:'name',label:'المرفق'},
-                {key:'city',label:'المدينة'},
-                {key:'capacity',label:'السعة'},
-                {key:'avail',label:'حالة الحجز',cell:f=>f.avail?Pill('متاح','status ok'):Pill('محجوز','status bad')}
-              ])}
-            </div>
-          </div>
-
-          <div class="card">
-            ${Toolbar('قصص الأثر')}
-            <div class="grid three">
-              ${Seed.stories.map(s=>`
-                <div class="card" style="background:#262a31">
-                  <h3>${s.title}</h3>
-                  <div class="muted">بقلم: ${s.by} — ${s.region}</div>
-                  <div class="chips" style="margin-top:8px">${Pill(s.impact,'tag')}</div>
-                </div>`).join('')}
-            </div>
-          </div>
+      <div class="grid two">
+        <div class="card">
+          ${Toolbar('المشاريع الأحدث', `<button class="btn primary" onclick="formProject()">+ مشروع</button>`)}
+          ${table(db.slice(0,8),[
+            {key:'id',label:'#'},{key:'title',label:'العنوان'},{key:'sector',label:'القطاع'},{key:'region',label:'المنطقة'},
+            {key:'status',label:'الحالة',cell:p=>`<span class="status ${p.status==='مكتمل'?'ok':(p.status==='قيد المراجعة'?'warn':'')}">${p.status}</span>`}
+          ])}
         </div>
-      `;
-    });
-
-    route('#map', el=>{
-      el.innerHTML = `
         <div class="card">
-          ${Toolbar('الخريطة التفاعلية','<span class="badge">Leaflet (Placeholder)</span>')}
-          <div style="height:420px; background:linear-gradient(135deg,#1a1d22,#0f1115) center/cover; border:1px solid var(--border); border-radius:14px; display:grid; place-items:center">
-            <div class="muted">دمج Leaflet الحقيقي لاحقًا — هذه مساحة الخريطة</div>
-          </div>
-        </div>`;
-    });
+          ${Toolbar('المرافق', `<button class="btn" onclick="formFacility()">+ مرفق</button>`)}
+          ${table(facilities.slice(0,8),[
+            {key:'name',label:'المرفق'},{key:'city',label:'المدينة'},{key:'capacity',label:'السعة'},
+            {key:'available',label:'الحجز',cell:f=>f.available?Pill('متاح','status ok'):Pill('محجوز','status bad')}
+          ])}
+        </div>
+      </div>
+    </div>`;
+});
 
-    route('#stories', el=>{
-      el.innerHTML = `
-        <div class="card">
-          ${Toolbar('قصص الأثر الوطنية', can('create')?`<button class="btn primary" onclick="alert('نموذج قصة أثر')">+ قصة أثر</button>`:'')}
-          <div class="stack">
-            ${Seed.stories.map(s=>`
-              <div class="card">
-                <h3>${s.title}</h3>
-                <div class="muted">بقلم ${s.by} — ${s.region}</div>
-                <div class="chips" style="margin-top:8px">${Pill(s.impact)}</div>
-              </div>`).join('')}
-          </div>
-        </div>`;
-    });
+route('#map', el=>{
+  el.innerHTML = `
+    <div class="card">
+      ${Toolbar('الخريطة التفاعلية','<span class="badge">Leaflet لاحقًا</span>')}
+      <div style="height:420px;background:linear-gradient(135deg,#1a1d22,#0f1115);border:1px solid var(--border);border-radius:14px;display:grid;place-items:center">
+        <div class="muted">منطقة الخريطة — ربط لاحقًا بـ Leaflet/OSM</div>
+      </div>
+    </div>`;
+});
 
-    route('#reports', el=>{
-      el.innerHTML = `
-        <div class="grid two">
-          <div class="card">
-            ${Toolbar('تقرير المشاريع حسب القطاع','<button class="btn" onclick="exportCSV()">CSV</button>')}
-            ${table(Seed.projects,[
-              {key:'sector',label:'القطاع'},
-              {key:'title',label:'عنوان المشروع'},
-              {key:'region',label:'المنطقة'},
-              {key:'status',label:'الحالة'}
-            ])}
-          </div>
-          <div class="card">
-            ${Toolbar('لوحة المؤشرات')}
-            <div class="grid kpi" style="grid-template-columns:repeat(3,1fr)">
-              <div class="card kpi"><div><div class="muted">CSR</div><div class="n">38</div></div>${Pill('Q3','status')}</div>
-              <div class="card kpi"><div><div class="muted">فعاليات</div><div class="n">24</div></div>${Pill('قريبًا','status warn')}</div>
-              <div class="card kpi"><div><div class="muted">أبحاث جامعية</div><div class="n">15</div></div>${Pill('دمج','status ok')}</div>
-            </div>
-            <div class="row" style="margin-top:10px"><button class="btn" onclick="exportPDF()">تقرير HTML</button></div>
-          </div>
-        </div>`;
-    });
+route('#stories', el=>{
+  const list = LS.get('SEED').stories;
+  el.innerHTML = `
+    <div class="card">
+      ${Toolbar('قصص الأثر', `<button class="btn" onclick="alert('نموذج قصة أثر قادم')">+ قصة أثر</button>`)}
+      <div class="grid three">
+        ${list.map(s=>`<div class="card" style="background:#262a31"><h3>${s.title}</h3><div class="muted">${s.by} — ${s.region}</div><div class="chips" style="margin-top:8px">${Pill(s.impact,'tag')}</div></div>`).join('')}
+      </div>
+    </div>`;
+});
 
-    route('#ai', el=>{
-      el.innerHTML = `
-        <div class="card">
-          ${Toolbar('AI Lab — المستشار الذكي')}
-          <div class="row">
-            <div class="field"><label>اسأل المستشار عن ربط مشروعك بأهداف 2030</label><input id="aiq" placeholder="مثال: مبادرة تمكين الأسر المنتجة في مكة" /></div>
-            <button class="btn primary" onclick="aiAnswer()">تشخيص ذكي</button>
-          </div>
-          <div id="aiAns" class="card" style="margin-top:12px; background:#262a31"></div>
-        </div>`;
-    });
-    function aiAnswer(){
-      const q = $('#aiq').value.trim();
-      if(!q) return;
-      $('#aiAns').innerHTML = `
-        <div><b>تحليل أولي:</b> "${q}"</div>
-        <ul>
-          <li>ربط بالرؤية: جودة الحياة، سوق العمل (6/27/96)</li>
-          <li>شركاء مقترحون: وزارة الموارد البشرية، بنك التنمية، منشآت</li>
-          <li>تمويل محتمل: مانحون + CSR</li>
-          <li>مؤشرات أثر: فرص دخل، وظائف مباشرة/غير مباشرة، نطاق جغرافي</li>
-        </ul>
-        <div class="chips">${Pill('ملاءمة: عالية','status ok')}${Pill('أولوية: متوسطة','status warn')}</div>`;
-    }
+route('#reports', el=>{
+  const db = LS.get('SEED').projects;
+  el.innerHTML = `
+    <div class="grid two">
+      <div class="card">
+        ${Toolbar('تقرير المشاريع حسب القطاع','<button class="btn" onclick="exportCSV()">CSV</button>')}
+        ${table(db,[{key:'sector',label:'القطاع'},{key:'title',label:'العنوان'},{key:'region',label:'المنطقة'},{key:'program',label:'البرنامج'},{key:'budget',label:'الميزانية'}])}
+      </div>
+      <div class="card">
+        ${Toolbar('لوحة المؤشرات')}
+        <div class="grid kpi" style="grid-template-columns:repeat(3,1fr)">
+          <div class="card kpi"><div><div class="muted">CSR</div><div class="n">38</div></div>${Pill('Q3','status')}</div>
+          <div class="card kpi"><div><div class="muted">فعاليات</div><div class="n">24</div></div>${Pill('قريبًا','status warn')}</div>
+          <div class="card kpi"><div><div class="muted">أبحاث</div><div class="n">15</div></div>${Pill('دمج','status ok')}</div>
+        </div>
+        <div class="row" style="margin-top:10px"><button class="btn" onclick="exportReportHTML()">تقرير HTML</button></div>
+      </div>
+    </div>`;
+});
 
-    route('#integrations', el=>{
-      el.innerHTML = `
-        <div class="grid two">
-          <div class="card">
-            ${Toolbar('مفاتيح API')}
-            <div class="row"><div class="field"><label>توليد مفتاح</label><input id="apiName" placeholder="اسم التطبيق"/></div><button class="btn primary" onclick="genKey()">توليد</button></div>
-            <div id="apiKeys" class="stack"></div>
-          </div>
-          <div class="card">
-            ${Toolbar('Webhooks')}
-            <div class="row">
-              <div class="field"><label>URL</label><input id="whUrl" placeholder="https://example.com/hook"/></div>
-              <div class="field"><label>حدث</label>
-                <select id="whEvt"><option>project.created</option><option>funding.approved</option><option>ticket.opened</option></select>
-              </div>
-              <button class="btn primary" onclick="addHook()">إضافة</button>
-            </div>
-            <div id="hooks" class="stack"></div>
-          </div>
-        </div>`;
-    });
-    function genKey(){
-      const name = $('#apiName').value.trim()||'App';
-      const key = 'key_' + Math.random().toString(36).slice(2,10);
-      const list = $('#apiKeys'); const card = document.createElement('div'); card.className='card';
-      card.innerHTML = `<b>${name}</b><div class="muted">${key}</div>`;
-      list.prepend(card);
-    }
-    function addHook(){
-      const url = $('#whUrl').value.trim(), evt=$('#whEvt').value;
-      if(!url) return;
-      const li = document.createElement('div'); li.className='card';
-      li.innerHTML = `<div class="row"><span>${evt}</span><span class="muted">${url}</span></div>`;
-      $('#hooks').prepend(li);
-    }
+route('#ai', el=>{
+  el.innerHTML = `
+    <div class="card">
+      ${Toolbar('AI Lab — المستشار الذكي')}
+      <div class="row">
+        <div class="field"><label>اسأل عن ربط مبادرتك بالرؤية</label><input id="aiq" placeholder="مثال: تمكين الأسر في مكة"/></div>
+        <button class="btn primary" onclick="aiAnswer()">تشخيص ذكي</button>
+      </div>
+      <div id="aiAns" class="card" style="margin-top:12px;background:#262a31"></div>
+    </div>`;
+});
+function aiAnswer(){
+  const q=$('#aiq').value.trim(); if(!q) return;
+  $('#aiAns').innerHTML = `<div><b>تحليل:</b> ${q}</div><ul><li>برامج ملائمة: جودة الحياة / HCD</li><li>شركاء: بنك التنمية، وزارة الموارد</li><li>تمويل: مانحون + CSR</li><li>KPIs: وظائف، دخل، نطاق</li></ul>${Pill('ملاءمة عالية','status ok')}`;
+}
 
-    route('#wallet', el=>{
-      el.innerHTML = `
-        <div class="grid two">
-          <div class="card">
-            ${Toolbar('الرصيد')}
-            <div class="kpi"><div><div class="muted">الرصيد الحالي</div><div class="n">${Seed.wallet.balance.toLocaleString()} ر.س</div></div>${Pill('محفظة رقمية')}</div>
-            <div class="row" style="margin-top:12px">
-              <div class="field"><label>المبلغ</label><input id="amt" type="number" min="1" placeholder="1000"/></div>
-              <div class="field"><label>الجهة المستفيدة</label><input id="to" placeholder="اسم الجهة"/></div>
-              <button class="btn primary" onclick="transfer()">تحويل</button>
-            </div>
-          </div>
-          <div class="card">
-            ${Toolbar('السجل')}
-            ${table(Seed.wallet.txs,[{key:'id',label:'#'},{key:'type',label:'النوع'},{key:'amount',label:'المبلغ',cell:t=>t.amount.toLocaleString()+' ر.س'},{key:'to',label:'إلى'},{key:'date',label:'التاريخ'}])}
-          </div>
-        </div>`;
-    });
-    function transfer(){
-      const amt = +($('#amt').value||0), to=$('#to').value.trim();
-      if(!amt||!to) return alert('أدخل المبلغ والجهة');
-      Seed.wallet.txs.unshift({id:'TX-'+Math.floor(Math.random()*9999), type:'تحويل', amount:amt, to, date:new Date().toISOString().slice(0,10)});
-      Seed.wallet.balance -= amt; LS.set('seed',Seed); render();
-    }
-
-    route('#support', el=>{
-      el.innerHTML = `
-        <div class="grid two">
-          <div class="card">
-            ${Toolbar('افتح تذكرة')}
-            <div class="row">
-              <div class="field"><label>الموضوع</label><input id="tSub"/></div>
-              <div class="field"><label>الوصف</label><textarea id="tDesc"></textarea></div>
-              <button class="btn primary" onclick="openTicket()">إرسال</button>
-            </div>
-          </div>
-          <div class="card">
-            ${Toolbar('تذاكري')}
-            ${table(Seed.tickets,[{key:'id',label:'#'},{key:'subject',label:'الموضوع'},{key:'status',label:'الحالة'},{key:'date',label:'التاريخ'}])}
-          </div>
-        </div>`;
-    });
-    function openTicket(){
-      const s=$('#tSub').value.trim(), d=$('#tDesc').value.trim(); if(!s) return;
-      Seed.tickets.unshift({id:'SUP-'+Math.floor(Math.random()*9000+1000), subject:s, status:'مفتوح', date:new Date().toISOString().slice(0,10)});
-      LS.set('seed',Seed); render();
-    }
-
-    /************ Accounts (8) ************/
-    function accountShell(title, infoHTML, actions=''){
-      return `
-        <div class="card">
-          ${Toolbar(title, actions)}
-          <div class="muted" style="margin-bottom:10px">${infoHTML}</div>
-          <div class="row" style="margin-bottom:8px">
-            ${can('create')? `<button class="btn primary" onclick="openProjectForm()">+ مشروع</button>`:''}
-            ${can('create')? `<button class="btn" onclick="openEventForm()">+ فعالية</button>`:''}
-            ${can('create')? `<button class="btn" onclick="openFundingForm()">+ طلب تمويل</button>`:''}
-          </div>
-          ${table(Seed.projects,[{key:'title',label:'عنوان المشروع'},{key:'sector',label:'القطاع'},{key:'region',label:'المنطقة'},{key:'status',label:'الحالة'}])}
-        </div>`;
-    }
-
-    route('#account-emirate', el=>{
-      el.innerHTML = accountShell(
-        'حساب إمارة المنطقة',
-        'لوحة مؤشرات مناطق؛ تصاريح المتحدثين؛ طلب رعاية سمو الأمير؛ خرائط مشاريع المحافظات. (خدمات الإمارة الخاصة).'
-      );
-    });
-
-    route('#account-gov', el=>{
-      el.innerHTML = accountShell(
-        'حساب جهة حكومية',
-        'طرح تحديات حكومية، استقبال حلول من الجامعات والقطاعين، ربط مشاريع بأهداف 2030، مؤشرات أداء وربط مع مركز أداء.'
-      );
-    });
-
-    route('#account-private', el=>{
-      el.innerHTML = accountShell(
-        'حساب القطاع الخاص',
-        'طرح CSR، وظائف، استثمارات، طلب متحدثين واستشارات، إدارة مرافق، تقارير أثر الرعاية.'
-      );
-    });
-
-    route('#account-ngo', el=>{
-      el.innerHTML = accountShell(
-        'حساب القطاع غير الربحي',
-        'إدارة مبادرات ومشاريع، استقبال تمويل وتطوع، تدريب مجتمعي، مرافق وفعاليات، تقارير أثر.'
-      );
-    });
-
-    route('#account-uni', el=>{
-      el.innerHTML = accountShell(
-        'حساب الجامعة',
-        'أبحاث قابلة للتطبيق، تدريب تعاوني، استشارات علمية، مرافق أكاديمية، ربط بالمؤشرات الوطنية.'
-      );
-    });
-
-    route('#account-person', el=>{
-      el.innerHTML = `
-        <div class="grid two">
-          <div class="card">
-            ${Toolbar('ملفي')}
-            <div class="row">
-              <div class="field"><label>الاسم</label><input placeholder="الاسم الكامل"/></div>
-              <div class="field"><label>التخصص</label><input placeholder="مجال الاهتمام"/></div>
-              <div class="field"><label>المدينة</label><input placeholder="الرياض"/></div>
-              <div class="field"><label>رقم الهوية</label><input placeholder="*********"/></div>
-            </div>
-            <div class="row">
-              <button class="btn primary">حفظ</button>
-              <span class="badge">فحص ميول ورغبات ذكي قريبًا</span>
-            </div>
-          </div>
-          <div class="card">
-            ${Toolbar('فرصي')}
-            <div class="chips">${Pill('تطوع')}${Pill('تدريب')}${Pill('وظائف')}${Pill('استثمار')}</div>
-            ${table(Seed.projects,[{key:'title',label:'فرصة'},{key:'region',label:'المنطقة'},{key:'status',label:'الحالة'}])}
-          </div>
-        </div>`;
-    });
-
-    route('#account-funder', el=>{
-      el.innerHTML = accountShell(
-        'حساب الجهة المانحة',
-        'معايير المنح/التمويل؛ مطابقة المشاريع؛ محفظة تمويل؛ تقارير أثر وتمويل؛ رعاية فعاليات.'
-      );
-    });
-
-    route('#account-speaker', el=>{
-      el.innerHTML = `
-        <div class="grid two">
-          <div class="card">
-            ${Toolbar('ملف المتحدث/المدرب')}
-            <div class="row">
-              <div class="field"><label>الاسم</label><input/></div>
-              <div class="field"><label>التخصص</label><input/></div>
-              <div class="field"><label>رابط السيرة</label><input placeholder="URL"/></div>
-            </div>
-            <div class="row"><button class="btn primary">حفظ</button></div>
-          </div>
-          <div class="card">
-            ${Toolbar('دعوات وورش')}
-            ${table([{title:'متحدث في ملتقى وطني', date:'2025-11-02', place:'مكة'}],[{key:'title',label:'الفعالية'},{key:'date',label:'التاريخ'},{key:'place',label:'المكان'}])}
-          </div>
-        </div>`;
-    });
-
-    route('#admin-center', el=>{
-      el.innerHTML = `
-        <div class="grid two">
-          <div class="card">
-            ${Toolbar('المستخدمون', can('create')?`<button class="btn primary" onclick="addUser()">+ مستخدم</button>`:'')}
-            ${table(Seed.users,[{key:'name',label:'الاسم'},{key:'email',label:'البريد'},{key:'role',label:'الدور'}])}
-          </div>
-          <div class="card">
-            ${Toolbar('تفعيل/إخفاء المكوّنات')}
-            <div class="chips">${Pill('المشاريع')}${Pill('الحلول')}${Pill('الفعاليات')}${Pill('المرافق')}${Pill('التطوع')}${Pill('التدريب')}${Pill('التوظيف')}${Pill('التمويل')}${Pill('المحفظة')}</div>
-            <div class="muted" style="margin-top:8px">هذه واجهة تخطيطية — التفعيل الفعلي يكون من لوحة الإعدادات الخلفية.</div>
-          </div>
-        </div>`;
-    });
-    function addUser(){
-      const name = prompt('اسم المستخدم'); if(!name) return;
-      Seed.users.unshift({id:Date.now(), name, email:`${name.replace(/\s+/g,'.').toLowerCase()}@hasseef.sa`, role:'viewer'});
-      LS.set('seed',Seed); render();
-    }
-
-    /************ Forms (drawers placeholder) ************/
-    function openProjectForm(){
-      const html = `
-        <div class="stack">
-          <div class="row">
-            <div class="field"><label>اسم المشروع</label><input id="pTitle" maxlength="100" required/></div>
-            <div class="field"><label>القطاع</label>
-              <select id="pSector"><option>حكومي</option><option>خاص</option><option>غير ربحي</option><option>جامعة</option></select>
-            </div>
-            <div class="field"><label>المنطقة</label><input id="pRegion" placeholder="الرياض"/></div>
-          </div>
-          <div class="field"><label>وصف</label><textarea id="pDesc" maxlength="500"></textarea></div>
-          <div class="row">
-            <div class="field"><label>ملف المشروع (PDF ≤ 5MB)</label><input type="file" accept="application/pdf"/></div>
-            <div class="field"><label>تاريخ التنفيذ</label><input type="date" id="pDate"/></div>
-          </div>
-          <div class="row">
-            <button class="btn primary" onclick="saveProject()">حفظ</button>
-            <button class="btn" onclick="closeModal()">إلغاء</button>
-          </div>
-        </div>`;
-      openModal('إنشاء مشروع', html);
-    }
-    function saveProject(){
-      const title = $('#pTitle').value.trim(); if(!title) return alert('اسم المشروع مطلوب');
-      const region = $('#pRegion').value.trim()||'الرياض';
-      const sector = $('#pSector').value;
-      Seed.projects.unshift({id:Math.floor(Math.random()*9999), title, region, sector, status:'جاري', impact:'—', kpi:'—'});
-      LS.set('seed',Seed); closeModal(); render();
-    }
-    function openEventForm(){
-      const html = `
+route('#integrations', el=>{
+  const keys = LS.get('SEED').keys||[]; const hooks = LS.get('SEED').hooks||[];
+  el.innerHTML = `
+    <div class="grid two">
+      <div class="card">
+        ${Toolbar('مفاتيح API')}
+        <div class="row"><div class="field"><label>اسم التطبيق</label><input id="apiName"/></div><button class="btn primary" onclick="genKey()">توليد</button></div>
+        <div id="apiKeys" class="wrap">${keys.map(k=>`<div class="card"><b>${k.name||'App'}</b><div class="muted">${k.key||k}</div></div>`).join('')}</div>
+      </div>
+      <div class="card">
+        ${Toolbar('Webhooks')}
         <div class="row">
-          <div class="field"><label>اسم الفعالية</label><input/></div>
-          <div class="field"><label>نوع الفعالية</label><select><option>ملتقى</option><option>ورشة</option><option>مؤتمر</option></select></div>
-          <div class="field"><label>تاريخ</label><input type="date"/></div>
+          <div class="field"><label>URL</label><input id="whUrl" placeholder="https://example.com/hook"/></div>
+          <div class="field"><label>حدث</label><select id="whEvt"><option>project.created</option><option>funding.approved</option><option>ticket.opened</option></select></div>
+          <button class="btn primary" onclick="addHook()">إضافة</button>
         </div>
-        <div class="row"><button class="btn primary" onclick="closeModal()">حفظ</button><button class="btn" onclick="closeModal()">إلغاء</button></div>`;
-      openModal('إنشاء فعالية', html);
-    }
-    function openFundingForm(){
-      const html = `
+        <div id="hooks" class="wrap">${hooks.map(u=>`<div class="card"><div class="row"><span>${u.event||'event'}</span><span class="muted">${u.url||u}</span></div></div>`).join('')}</div>
+      </div>
+    </div>`;
+});
+function genKey(){ const name=$('#apiName').value||'App'; const db=LS.get('SEED'); (db.keys=db.keys||[]).unshift({name, key:'key_'+Math.random().toString(36).slice(2,10)}); LS.set('SEED',db); render(); }
+function addHook(){ const url=$('#whUrl').value.trim(); if(!url) return; const evt=$('#whEvt').value; const db=LS.get('SEED'); (db.hooks=db.hooks||[]).unshift({event:evt,url}); LS.set('SEED',db); render(); }
+
+route('#wallet', el=>{
+  const w = LS.get('SEED').wallet;
+  el.innerHTML = `
+    <div class="grid two">
+      <div class="card">
+        ${Toolbar('الرصيد')}
+        <div class="kpi"><div><div class="muted">الرصيد الحالي</div><div class="n">${(w.balance||0).toLocaleString()} ر.س</div></div>${Pill('محفظة')}</div>
+        <div class="row" style="margin-top:12px">
+          <div class="field"><label>المبلغ</label><input id="amt" type="number" min="1" placeholder="1000"/></div>
+          <div class="field"><label>الجهة المستفيدة</label><input id="to" placeholder="اسم الجهة"/></div>
+          <button class="btn primary" onclick="transfer()">تحويل</button>
+        </div>
+      </div>
+      <div class="card">
+        ${Toolbar('السجل')}
+        ${table((w.txs||[]),[{key:'id',label:'#'},{key:'type',label:'النوع'},{key:'amount',label:'المبلغ',cell:t=>t.amount.toLocaleString()+' ر.س'},{key:'to',label:'إلى'},{key:'date',label:'التاريخ'}])}
+      </div>
+    </div>`;
+});
+function transfer(){
+  const amt=+($('#amt').value||0), to=$('#to').value.trim(); if(!amt||!to) return alert('أدخل المبلغ والجهة');
+  const db=LS.get('SEED'); db.wallet.txs.unshift({id:'TX-'+Math.floor(Math.random()*9999), type:'تحويل', amount:amt, to, date:new Date().toISOString().slice(0,10)}); db.wallet.balance-=amt; LS.set('SEED',db);
+  render();
+}
+
+route('#support', el=>{
+  const list = LS.get('SEED').tickets;
+  el.innerHTML = `
+    <div class="grid two">
+      <div class="card">
+        ${Toolbar('افتح تذكرة')}
         <div class="row">
-          <div class="field"><label>اسم المشروع</label><input/></div>
-          <div class="field"><label>المبلغ المطلوب</label><input type="number" min="1"/></div>
-          <div class="field"><label>مدة التنفيذ (أشهر)</label><input type="number" min="1"/></div>
+          <div class="field"><label>الموضوع</label><input id="tSub"/></div>
+          <div class="field"><label>الوصف</label><textarea id="tDesc"></textarea></div>
+          <button class="btn primary" onclick="openTicket()">إرسال</button>
         </div>
-        <div class="row"><button class="btn primary" onclick="closeModal()">إرسال</button><button class="btn" onclick="closeModal()">إلغاء</button></div>`;
-      openModal('طلب تمويل', html);
-    }
+      </div>
+      <div class="card">
+        ${Toolbar('تذاكري')}
+        ${table(list,[{key:'id',label:'#'},{key:'subject',label:'الموضوع'},{key:'status',label:'الحالة'},{key:'date',label:'التاريخ'}])}
+      </div>
+    </div>`;
+});
+function openTicket(){
+  const s=$('#tSub').value.trim(), d=$('#tDesc').value.trim(); if(!s) return;
+  const db=LS.get('SEED'); db.tickets.unshift({id:'SUP-'+Math.floor(Math.random()*9000+1000),subject:s,status:'مفتوح',date:new Date().toISOString().slice(0,10),desc:d}); LS.set('SEED',db);
+  render();
+}
 
-    /************ Modal ************/
-    const modalRoot = document.createElement('div'); document.body.appendChild(modalRoot);
-    function openModal(title, content){
-      modalRoot.innerHTML = `
-        <div style="position:fixed;inset:0;background:rgba(0,0,0,.5);display:grid;place-items:center;z-index:50">
-          <div class="card" style="width:min(780px,92vw); max-height:86vh; overflow:auto">
-            <div class="toolbar"><h3 style="margin:0">${title}</h3><button class="btn" onclick="closeModal()">✕</button></div>
-            <div>${content}</div>
-          </div>
-        </div>`;
-    }
-    function closeModal(){ modalRoot.innerHTML=''; }
+/* ========== Accounts (8) ========== */
+function accountShell(title, desc, resource){
+  return `
+    <div class="card">${Toolbar(title, `<div class="row">
+      <button class="btn primary" onclick="formProject()">+ مشروع</button>
+      <button class="btn" onclick="formEvent()">+ فعالية</button>
+      <button class="btn" onclick="formGrant()">+ دعوة تمويل</button>
+    </div>`)}<div class="muted" style="margin-bottom:10px">${desc}</div>
+    <div id="${resource}_list"></div></div>`;
+}
+function renderAccountTable(target, filter={}){
+  const data = (LS.get('SEED').projects||[]).filter(p=>{
+    if(filter.sector && p.sector!==filter.sector) return false;
+    return true;
+  });
+  const el = document.getElementById(target);
+  el.innerHTML = table(data,[{key:'title',label:'عنوان المشروع'},{key:'sector',label:'القطاع'},{key:'region',label:'المنطقة'},{key:'status',label:'الحالة'}]);
+}
 
-    /************ Replace logos with your Base64 (optional) ************/
-    // TODO: إن أردت الصور الرسمية (PNG) داخل الكود:
-    // ١) استبدل src لصور Vision/Talbiya/Hasseef ببيانات Base64 السابقة
-    //    مثال: src="data:image/png;base64,AAA..."
-  </script>
+route('#account-emirate', el=>{
+  el.innerHTML = accountShell('حساب إمارة المنطقة','تصاريح، خرائط المشاريع حسب المحافظات، طلبات الرعاية.','emirate');
+  renderAccountTable('emirate_list');
+});
+route('#account-gov', el=>{
+  el.innerHTML = accountShell('حساب جهة حكومية','طرح تحديات، استقبال حلول، ربط بالأهداف الوطنية.','gov');
+  renderAccountTable('gov_list',{sector:'حكومي'});
+});
+route('#account-private', el=>{
+  el.innerHTML = accountShell('حساب القطاع الخاص','CSR، وظائف، رعاية فعاليات، تقارير أثر.','private');
+  renderAccountTable('private_list',{sector:'خاص'});
+});
+route('#account-ngo', el=>{
+  el.innerHTML = accountShell('حساب القطاع غير الربحي','إدارة مبادرات، استقبال تمويل وتطوع.','ngo');
+  renderAccountTable('ngo_list',{sector:'غير ربحي'});
+});
+route('#account-uni', el=>{
+  el.innerHTML = accountShell('حساب الجامعة','أبحاث قابلة للتطبيق، تدريب تعاوني، مرافق أكاديمية.','uni');
+  renderAccountTable('uni_list',{sector:'جامعات'});
+});
+route('#account-person', el=>{
+  el.innerHTML = `
+    <div class="grid two">
+      <div class="card">
+        ${Toolbar('ملفي')}
+        <div class="row">
+          <div class="field"><label>الاسم</label><input id="prsn_name"/></div>
+          <div class="field"><label>التخصص</label><input id="prsn_spec"/></div>
+          <div class="field"><label>المدينة</label><input id="prsn_city"/></div>
+          <div class="field"><label>رقم الهوية</label><input id="prsn_id"/></div>
+        </div>
+        <div class="row"><button class="btn primary" onclick="alert('تم الحفظ محليًا')">حفظ</button></div>
+      </div>
+      <div class="card">
+        ${Toolbar('فرصي')}
+        <div class="chips">${Pill('تطوع')}${Pill('تدريب')}${Pill('وظائف')}${Pill('استثمار')}</div>
+        <div id="prsn_opps"></div>
+      </div>
+    </div>`;
+  const data=LS.get('SEED').projects; $('#prsn_opps').innerHTML = table(data.slice(0,8),[{key:'title',label:'فرصة'},{key:'region',label:'المنطقة'},{key:'status',label:'الحالة'}]);
+});
+route('#account-funder', el=>{
+  el.innerHTML = accountShell('حساب الجهة المانحة','معايير المنح؛ مطابقة المشاريع؛ صرف ومتابعة.','funder');
+  renderAccountTable('funder_list');
+});
+route('#account-speaker', el=>{
+  el.innerHTML = `
+    <div class="grid two">
+      <div class="card">
+        ${Toolbar('متحدث/مدرب')}
+        <div class="row">
+          <div class="field"><label>الاسم</label><input id="sp_name"/></div>
+          <div class="field"><label>التخصص</label><input id="sp_spec"/></div>
+          <div class="field"><label>رابط السيرة</label><input id="sp_cv" placeholder="https://..."/></div>
+        </div>
+        <div class="row"><button class="btn primary" onclick="formSpeaker()">حفظ</button></div>
+      </div>
+      <div class="card">
+        ${Toolbar('دعوات وورش')}
+        <div id="sp_list"></div>
+      </div>
+    </div>`;
+  const list=LS.get('SEED').speakers||[]; $('#sp_list').innerHTML = table(list,[{key:'name',label:'الاسم'},{key:'spec',label:'التخصص'},{key:'city',label:'المدينة'},{key:'fee',label:'أتعاب'}]);
+});
+
+/* ========== Admin Center + Logo Uploader ========== */
+route('#admin-center', el=>{
+  el.innerHTML = `
+    <div class="grid two">
+      <div class="card">
+        ${Toolbar('مركز الإدارة')}
+        <div class="chips">${Pill('مشاريع')}${Pill('حلول')}${Pill('فعاليات')}${Pill('مرافق')}${Pill('تطوع')}${Pill('وظائف')}${Pill('منح')}${Pill('محفظة')}${Pill('AI')}${Pill('Integrations')}</div>
+      </div>
+
+      <div class="card">
+        ${Toolbar('تحميل الشعارات (Vision / تلبية / حصيف)')}
+        <p class="muted">ارفع ملفات PNG — تُحفظ محليًا (Base64) وتُعرض تلقائيًا في الهيدر.</p>
+        <div class="row">
+          <div class="field"><label>شعار رؤية 2030 (PNG)</label><input type="file" accept="image/png" id="upVision"/></div>
+          <div class="field"><label>شعار مبادرة تلبية (PNG)</label><input type="file" accept="image/png" id="upTalbiya"/></div>
+          <div class="field"><label>شعار حصيف (PNG)</label><input type="file" accept="image/png" id="upHasseef"/></div>
+        </div>
+        <div class="row">
+          <button class="btn primary" onclick="saveLogos()">حفظ الشعارات</button>
+          <button class="btn" onclick="clearLogos()">إزالة الشعارات المخزّنة</button>
+        </div>
+      </div>
+    </div>`;
+});
+
+async function fileToBase64(file){
+  return new Promise((res,rej)=>{
+    const r = new FileReader();
+    r.onload = ()=>res(r.result.split(',')[1]); // remove prefix data:image/png;base64,
+    r.onerror = rej;
+    r.readAsDataURL(file);
+  });
+}
+async function saveLogos(){
+  const vF = document.getElementById('upVision').files[0],
+        tF = document.getElementById('upTalbiya').files[0],
+        hF = document.getElementById('upHasseef').files[0];
+  if(vF) localStorage.setItem(LOGO_KEYS.vision, await fileToBase64(vF));
+  if(tF) localStorage.setItem(LOGO_KEYS.talbiya, await fileToBase64(tF));
+  if(hF) localStorage.setItem(LOGO_KEYS.hasseef, await fileToBase64(hF));
+  setLogosFromStorage();
+  alert('تم حفظ الشعارات محليًا ✅');
+}
+function clearLogos(){
+  Object.values(LOGO_KEYS).forEach(k=>localStorage.removeItem(k));
+  setLogosFromStorage();
+  alert('تمت إزالة الشعارات المخزّنة');
+}
+
+/* ========== Init ========== */
+</script>
 </body>
 </html>
