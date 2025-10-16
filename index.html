@@ -1,613 +1,700 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>حصيف — النظام الوطني للتكامل التنموي</title>
-<meta name="description" content="منصة حصيف: النظام الوطني للتكامل التنموي — ربط التحديات بالحلول والتمويل وقياس الأثر وفق رؤية 2030.">
-<style>
-  :root{
-    --bg:#1f2227; --bgSoft:#282c34; --card:#2f343c; --text:#fff; --muted:#bfc4cc;
-    --primary:#5AA044; --accent:#8ccf5f; --danger:#ec4b4b; --ok:#30c48d; --warn:#ffb02e; --border:#3a3f47;
-    --shadow:0 8px 24px rgba(0,0,0,.25); --radius:18px;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;height:100%;background:var(--bg);color:var(--text);
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Calibri,"Noto Sans Arabic","Tajawal",Arial,sans-serif}
-  a{color:var(--accent);text-decoration:none}
-  header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 16px;position:sticky;top:0;z-index:10;background:#14161a;border-bottom:1px solid var(--border)}
-  .logos{display:flex;align-items:center;gap:14px}.logo{height:38px}.logo.hasseef{height:44px}
-  .badge{font-size:12px;color:var(--muted)}
-  .btn{background:transparent;color:#fff;border:1px solid var(--border);padding:10px 14px;border-radius:12px;cursor:pointer}
-  .btn.primary{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:var(--shadow)}
-  .container{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
-  .sidebar{background:var(--bgSoft);border-inline-end:1px solid var(--border);padding:14px;position:sticky;top:62px;height:calc(100vh - 62px);overflow:auto}
-  .nav{display:flex;flex-direction:column;gap:6px}.nav a{display:block;padding:12px;border-radius:12px;color:#fff;border:1px solid transparent}
-  .nav a.active,.nav a:hover{background:var(--card);border-color:var(--border)}
-  main{padding:18px;min-height:calc(100vh - 62px)}
-  .wrap{display:grid;gap:16px} .grid{display:grid;gap:16px} .grid.kpi{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))} .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
-  .kpi{display:flex;justify-content:space-between;align-items:center}.kpi .n{font-size:28px;font-weight:700}
-  .table{width:100%;border-collapse:collapse;font-size:14px}.table th,.table td{border-bottom:1px solid var(--border);padding:10px;text-align:start}
-  .muted{color:var(--muted)} .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-  .field{display:flex;flex-direction:column;gap:6px;flex:1 min(280px,100%)} input,select,textarea{width:100%;background:#15181d;color:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 12px}
-  textarea{min-height:110px;resize:vertical}
-  .toolbar{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:8px}
-  .tag{background:#15181d;border:1px solid var(--border);color:#bfc4cc;border-radius:999px;padding:6px 10px;font-size:12px}
-  .status{padding:.25rem .6rem;border-radius:10px;font-size:12px;border:1px solid var(--border)}
-  .status.ok{background:rgba(48,196,141,.15);color:#9af1cd;border-color:#2a7f64}
-  .status.warn{background:rgba(255,176,46,.12);color:#ffd99a;border-color:#8a6a1b}
-  .status.bad{background:rgba(236,75,75,.12);color:#ffb2b2;border-color:#8a1b1b}
-  .chips{display:flex;gap:6px;flex-wrap:wrap}
-  footer{padding:16px 18px;border-top:1px solid var(--border);background:#16181d}
-  .footer{color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
-  @media (max-width:1024px){.grid.kpi{grid-template-columns:repeat(2,1fr)}.container{grid-template-columns:1fr}.sidebar{position:static;height:auto}header{position:sticky}}
-  @media (max-width:640px){.grid.two,.grid.three{grid-template-columns:1fr}.logo{height:30px}.logo.hasseef{height:36px}}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>منصة حصيف | نموذج تشغيلي موحد</title>
+  <meta name="description" content="منصة حصيف - نموذج واجهة موحّد للحسابات والخدمات والتكاملات التنموية وفق رؤية 2030" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{
+      --brand:#0ea5a4; /* teal-500 fallback */
+      --brand-dark:#0f766e; /* teal-700 */
+      --brand-emerald:#059669; /* emerald-600 */
+      --accent:#ca8a04; /* yellow-600 (ذهبي) */
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:"Tajawal", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"}
+    .glass{backdrop-filter:saturate(160%) blur(10px); background:rgba(255,255,255,.65)}
+    .gold-gradient{background:linear-gradient(90deg,#fef3c7,#fde68a,#facc15,#f59e0b)}
+    .brand-gradient{background:linear-gradient(120deg,#10b981,#0ea5a4,#0f766e)}
+    .hero-pattern{background-image: radial-gradient(closest-side, rgba(16,185,129,.15), rgba(16,185,129,0) 90%)}
+    .section{scroll-margin-top:96px}
+  </style>
 </head>
-<body>
-
-<!-- ===== Header ===== -->
-<header>
-  <!-- يسار: رؤية 2030 + تلبية -->
-  <div class="logos" style="margin-inline-start:auto">
-    <img class="logo" alt="Vision 2030" id="logo-vision"/>
-    <img class="logo" alt="Talbiya" id="logo-talbiya"/>
-  </div>
-
-  <!-- يمين: حصيف -->
-  <div class="logos" style="margin-inline-end:auto">
-    <img class="logo hasseef" alt="Hasseef" id="logo-hasseef"/>
-    <div>
-      <div style="font-weight:700">حَصيف</div>
-      <div class="badge">منصة تكامل تنموي لتسريع تحقيق مستهدفات رؤية 2030</div>
-    </div>
-  </div>
-
-  <!-- أدوار وتصدير -->
-  <div class="row">
-    <span class="badge">الدور:</span>
-    <select id="roleSelect" title="الدور">
-      <option value="viewer">عارض</option>
-      <option value="manager">مدير</option>
-      <option value="gov">حكومي</option>
-      <option value="emirate">إمارة</option>
-      <option value="private">خاص</option>
-      <option value="ngo">غير ربحي</option>
-      <option value="uni">جامعة</option>
-      <option value="funder">مانح</option>
-      <option value="speaker">متحدث/مدرب</option>
-      <option value="admin">إدارة المنصة</option>
-    </select>
-    <button class="btn" onclick="exportCSV()">CSV</button>
-    <button class="btn" onclick="exportReportHTML()">Report</button>
-  </div>
-</header>
-
-<div class="container">
-  <!-- ===== Sidebar ===== -->
-  <aside class="sidebar">
-    <nav class="nav" id="sideNav">
-      <a href="#dashboard" class="active">لوحة رئيسية</a>
-      <a href="#map">الخريطة</a>
-      <a href="#stories">قصص الأثر</a>
-      <a href="#reports">التقارير</a>
-      <a href="#ai">AI Lab</a>
-      <a href="#integrations">التكاملات</a>
-      <a href="#wallet">المحفظة</a>
-      <a href="#support">الدعم والتذاكر</a>
-      <div style="height:8px"></div>
-      <span class="badge">الحسابات</span>
-      <a href="#account-emirate">إمارة المنطقة</a>
-      <a href="#account-gov">جهة حكومية</a>
-      <a href="#account-private">قطاع خاص</a>
-      <a href="#account-ngo">قطاع غير ربحي</a>
-      <a href="#account-uni">جامعة</a>
-      <a href="#account-person">أفراد</a>
-      <a href="#account-funder">جهة مانحة</a>
-      <a href="#account-speaker">متحدث/مدرب</a>
-      <a href="#admin-center">مركز الإدارة</a>
+<body class="bg-slate-50 text-slate-900">
+  <!-- NAVBAR -->
+  <header class="fixed top-0 inset-x-0 z-50">
+    <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3">
+      <div class="flex items-center justify-between rounded-2xl glass shadow-md px-4 py-2">
+        <a href="#home" class="flex items-center gap-3">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl brand-gradient text-white font-black shadow-md">ح</span>
+          <span class="font-extrabold text-lg tracking-wide text-slate-800">منصة حصيف</span>
+        </a>
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+          <a href="#about" class="hover:text-emerald-700">عن المنصة</a>
+          <a href="#accounts" class="hover:text-emerald-700">الحسابات</a>
+          <a href="#services" class="hover:text-emerald-700">الخدمات والصلاحيات</a>
+          <a href="#management" class="hover:text-emerald-700">إدارة المنصة</a>
+          <a href="#pricing" class="hover:text-emerald-700">الاشتراكات</a>
+          <a href="#sponsors" class="hover:text-emerald-700">الرعاة</a>
+          <a href="#partners" class="hover:text-emerald-700">الشركاء</a>
+          <a href="#support" class="hover:text-emerald-700">الدعم والمقترحات</a>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="#demo" class="hidden sm:inline-flex items-center gap-2 rounded-xl bg-slate-900 text-white text-sm px-4 py-2 hover:bg-slate-800 transition shadow">
+            <span>عرض توضيحي</span>
+          </a>
+          <button id="menuBtn" class="md:hidden inline-flex items-center justify-center rounded-xl border border-slate-200 p-2 bg-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+          </button>
+        </div>
+      </div>
+      <div id="mobileMenu" class="md:hidden hidden mt-2 rounded-2xl glass shadow divide-y divide-white/40">
+        <a href="#about" class="block px-4 py-3">عن المنصة</a>
+        <a href="#accounts" class="block px-4 py-3">الحسابات</a>
+        <a href="#services" class="block px-4 py-3">الخدمات والصلاحيات</a>
+        <a href="#management" class="block px-4 py-3">إدارة المنصة</a>
+        <a href="#pricing" class="block px-4 py-3">الاشتراكات</a>
+        <a href="#sponsors" class="block px-4 py-3">الرعاة</a>
+        <a href="#partners" class="block px-4 py-3">الشركاء</a>
+        <a href="#support" class="block px-4 py-3">الدعم والمقترحات</a>
+      </div>
     </nav>
-  </aside>
+  </header>
 
-  <!-- ===== Main ===== -->
-  <main id="app"></main>
-</div>
+  <!-- HERO -->
+  <section id="home" class="section pt-28 md:pt-36">
+    <div class="relative overflow-hidden">
+      <div class="absolute inset-0 hero-pattern"></div>
+      <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 md:py-16">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black leading-tight text-slate-900">
+              منصة وطنية لتكامل الحلول التنموية
+              <span class="block text-transparent bg-clip-text brand-gradient">تســـرِّع مستهدفات رؤية 2030</span>
+            </h1>
+            <p class="mt-5 text-slate-600 text-lg leading-8">نموذج عمل مبتكر يتيح لأصحاب الحلول المشاركة عبر حسابات متنوعة (أفراد، قطاع خاص، غير ربحي، جامعات، حكومة، مانحين) مع ربط علمي وتنفيذي، ومؤشرات أداء وتقارير شفافة.</p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a href="#accounts" class="inline-flex items-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-3 text-sm font-semibold shadow">
+                استكشاف الحسابات
+              </a>
+              <a href="#pricing" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-800 px-5 py-3 text-sm font-semibold">
+                باقات الاشتراك
+              </a>
+            </div>
+            <div class="mt-8 flex items-center gap-4">
+              <div class="flex -space-x-2 rtl:space-x-reverse">
+                <img class="h-8 w-8 rounded-full ring-2 ring-white" src="https://api.dicebear.com/9.x/initials/svg?seed=H1" alt=""/>
+                <img class="h-8 w-8 rounded-full ring-2 ring-white" src="https://api.dicebear.com/9.x/initials/svg?seed=H2" alt=""/>
+                <img class="h-8 w-8 rounded-full ring-2 ring-white" src="https://api.dicebear.com/9.x/initials/svg?seed=H3" alt=""/>
+              </div>
+              <p class="text-sm text-slate-600">أكثر من <span class="font-bold">400 منشأة</span> جرّبت منتجات المنصة وتكاملاتها.</p>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="absolute -inset-6 rounded-3xl gold-gradient opacity-30 blur-2xl"></div>
+            <div class="relative rounded-3xl border border-slate-200 bg-white p-4 shadow-2xl">
+              <div class="grid grid-cols-2 gap-3">
+                <!-- Quick Stat Cards -->
+                <div class="rounded-2xl border border-slate-200 p-4">
+                  <p class="text-sm text-slate-500">مبادرات نشطة</p>
+                  <p class="mt-2 text-2xl font-black text-emerald-700">+128</p>
+                </div>
+                <div class="rounded-2xl border border-slate-200 p-4">
+                  <p class="text-sm text-slate-500">شراكات حكومية</p>
+                  <p class="mt-2 text-2xl font-black text-emerald-700">+34</p>
+                </div>
+                <div class="rounded-2xl border border-slate-200 p-4">
+                  <p class="text-sm text-slate-500">فرص منح</p>
+                  <p class="mt-2 text-2xl font-black text-emerald-700">+76</p>
+                </div>
+                <div class="rounded-2xl border border-slate-200 p-4">
+                  <p class="text-sm text-slate-500">تقارير ذكاء</p>
+                  <p class="mt-2 text-2xl font-black text-emerald-700">+52</p>
+                </div>
+              </div>
+              <div class="mt-4 rounded-xl bg-slate-50 border border-slate-200 p-4">
+                <p class="text-sm text-slate-600">يتوافق نموذج العمل مع اللبنات التسع (Nine Building Blocks)، ويربط المشاريع ببرامج وأهداف رؤية 2030 بثلاثة مستويات (استراتيجية، فرعية، تفصيلية).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<footer>
-  <div class="footer">
-    <span>© حصيف — منصة التكامل التنموي</span>
-    <a href="#about">حول المنصة</a>
-    <a href="#policies">السياسات</a>
-    <a href="#privacy">الخصوصية</a>
-    <a href="#terms">اتفاقية الاستخدام</a>
-    <a href="#contact">الدعم الفني</a>
-  </div>
-</footer>
+  <!-- ABOUT -->
+  <section id="about" class="section py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-12 gap-8 items-start">
+        <div class="md:col-span-7">
+          <h2 class="text-2xl md:text-3xl font-black text-slate-900">عن منصة حصيف</h2>
+          <p class="mt-4 text-slate-700 leading-8">منصة حصيف هي جزء من مبادرة تلبية، وُلدت من حائل بدعم كريم من سمو أمير المنطقة وسمو نائبه. تقدم المنصة تكاملًا بين القطاعات عبر حسابات متخصصة، مع لوحات تحليل وربط علمي من الجامعات، ونوافذ للتمويل والمنح والاستثمار، وتقارير أثر وشفافية عالية.</p>
+          <ul class="mt-6 space-y-3 text-slate-700">
+            <li class="flex items-start gap-3"><span class="mt-1 h-2.5 w-2.5 rounded-full bg-emerald-600"></span><span>ربط المشاريع والأحداث ببرامج وأهداف رؤية 2030.</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1 h-2.5 w-2.5 rounded-full bg-emerald-600"></span><span>تحفيز المسؤولية الاجتماعية للشركات عبر فرص منح ورعاية تجارية.</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1 h-2.5 w-2.5 rounded-full bg-emerald-600"></span><span>آلية سهلة وآمنة للتبرعات والاستثمار والاشتراك.</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1 h-2.5 w-2.5 rounded-full bg-emerald-600"></span><span>تقارير أداء ولوحات ذكاء تُظهر الأثر وعدد المستفيدين والفرص.</span></li>
+          </ul>
+        </div>
+        <div class="md:col-span-5">
+          <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-lg">
+            <h3 class="font-extrabold text-lg">مزايا سريعة</h3>
+            <div class="mt-4 grid grid-cols-2 gap-3 text-sm">
+              <div class="rounded-2xl border border-slate-200 p-4">تحويل رقمي للمنشآت (ERP)</div>
+              <div class="rounded-2xl border border-slate-200 p-4">محفظة مالية للمنح والاستثمار</div>
+              <div class="rounded-2xl border border-slate-200 p-4">تكامل API بين الحسابات</div>
+              <div class="rounded-2xl border border-slate-200 p-4">قياس أثر وتقارير شفافة</div>
+            </div>
+            <div class="mt-4 rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-sm text-emerald-900">
+              تم اعتماد نسخة أولية ضمن برنامج وطني لتقنية المعلومات (MVPLAB) ويخدم أكثر من 400 منشأة.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script>
-/* ===========================================
-   1) تخزين الشعارات محليًا (Base64) — بدون ملفات خارجية
-   - ارفع صور PNG مرة واحدة من مركز الإدارة → تحميل الشعارات.
-   - تُحفَظ في LocalStorage وتُستخدم تلقائيًا كل مرة.
-=========================================== */
-const LOGO_KEYS = { vision:'HASSEEF_LOGO_VISION', talbiya:'HASSEEF_LOGO_TALBIYA', hasseef:'HASSEEF_LOGO_HASSEEF' };
+  <!-- ACCOUNTS -->
+  <section id="accounts" class="section py-16 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-black">الحسابات</h2>
+          <p class="mt-2 text-slate-600">ستة حسابات أساسية + حساب الشركاء الاستراتيجيين. اختر بطاقة للحالة التفصيلية.</p>
+        </div>
+        <div class="relative">
+          <input id="accountSearch" type="search" placeholder="ابحث عن حساب..." class="w-64 rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600"/>
+        </div>
+      </div>
 
-// fallback SVGs خفيفة لو لم تُحمّل بعد
-const FALLBACK = {
-  vision: 'data:image/svg+xml;base64,'+btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="110" height="36"><rect width="110" height="36" rx="8" fill="#14161a"/><text x="10" y="23" fill="#ddd" font-family="Tahoma" font-size="14" font-weight="700">VISION 2030</text></svg>`),
-  talbiya:'data:image/svg+xml;base64,'+btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="90" height="36"><rect width="90" height="36" rx="8" fill="#202327"/><text x="10" y="22" fill="#ccc" font-family="Tahoma" font-size="14" font-weight="700">TALBIYA</text></svg>`),
-  hasseef:'data:image/svg+xml;base64,'+btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="100" height="44"><rect width="100" height="44" rx="8" fill="#5AA044"/><text x="12" y="28" fill="#fff" font-family="Tahoma" font-size="16" font-weight="700">HASSEEF</text></svg>`)
-};
-function setLogosFromStorage(){
-  const v = localStorage.getItem(LOGO_KEYS.vision);
-  const t = localStorage.getItem(LOGO_KEYS.talbiya);
-  const h = localStorage.getItem(LOGO_KEYS.hasseef);
-  document.getElementById('logo-vision').src  = v ? `data:image/png;base64,${v}` : FALLBACK.vision;
-  document.getElementById('logo-talbiya').src = t ? `data:image/png;base64,${t}` : FALLBACK.talbiya;
-  document.getElementById('logo-hasseef').src = h ? `data:image/png;base64,${h}` : FALLBACK.hasseef;
-}
+      <div id="accountGrid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Card template repeated with data-account attribute for filtering -->
+        <button data-account="الأفراد" class="account-card text-start rounded-2xl border border-slate-200 bg-white p-5 hover:border-emerald-500 hover:shadow-md transition">
+          <div class="flex items-center justify-between">
+            <h3 class="font-extrabold">حساب الأفراد</h3>
+            <span class="text-xs rounded-full bg-emerald-50 text-emerald-700 px-3 py-1">مبادراتي</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">إدراج مبادرات ومشاريع، التقديم على فرص، محفظة التبرع/الاستثمار، التطوع والتدريب.</p>
+        </button>
 
-/* ========== Utilities & RBAC ========== */
-const $=(s,r=document)=>r.querySelector(s); const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
-const LS={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k)??JSON.stringify(d))}catch{return d}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
-const RBAC={
-  viewer:{create:false,edit:false,delete:false,export:true},
-  manager:{create:true,edit:true,delete:true,export:true},
-  gov:{create:true,edit:true,delete:false,export:true},
-  emirate:{create:true,edit:true,delete:false,export:true},
-  private:{create:true,edit:true,delete:false,export:true},
-  ngo:{create:true,edit:true,delete:false,export:true},
-  uni:{create:true,edit:true,delete:false,export:true},
-  funder:{create:true,edit:true,delete:false,export:true},
-  speaker:{create:true,edit:true,delete:false,export:true},
-  admin:{create:true,edit:true,delete:true,export:true}
-};
-function role(){ return (LS.get('me',{role:'viewer'}).role)||'viewer'; }
-function setRole(v){ const me=LS.get('me',{}); me.role=v; LS.set('me',me); }
-function can(a){ return !!(RBAC[role()] && RBAC[role()][a]); }
-$('#roleSelect').value = role(); $('#roleSelect').onchange = e=>{ setRole(e.target.value); render(); };
+        <button data-account="القطاع الخاص" class="account-card text-start rounded-2xl border border-slate-200 bg-white p-5 hover:border-emerald-500 hover:shadow-md transition">
+          <div class="flex items-center justify-between">
+            <h3 class="font-extrabold">حساب القطاع الخاص</h3>
+            <span class="text-xs rounded-full bg-yellow-50 text-yellow-700 px-3 py-1">مسؤولية اجتماعية</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">فرص منح ورعاية تجارية، تقارير أثر، ربط بالجهات الحكومية، لوحة التزامات CSR.</p>
+        </button>
 
-/* ========== Seed (local) ========== */
-function defaultSeed(){
-  return {
-    projects:[
-      {id:1,title:'مختبر ابتكار اجتماعي',sector:'جامعات',region:'حائل',program:'جودة الحياة',budget:250000,status:'نشط',kpi:'QoL'},
-      {id:2,title:'تمكين الأسر المنتجة',sector:'غير ربحي',region:'الرياض',program:'التحول الوطني',budget:180000,status:'قيد المراجعة',kpi:'Jobs'},
-      {id:3,title:'مركز قيادة تطوعي',sector:'حكومي',region:'مكة',program:'تنمية القدرات البشرية',budget:320000,status:'نشط',kpi:'HCD'}
-    ],
-    facilities:[{id:11,name:'قاعة جامعة',city:'الرياض',capacity:600,available:true},{id:12,name:'مسرح بلدي',city:'حائل',capacity:400,available:false}],
-    stories:[{id:21,title:'قصة أثر: قرية منتجة',by:'جمعية تنموية',region:'القصيم',impact:'+320 فرصة'}],
-    events:[], grants:[], jobs:[], volunteer:[], partners:[], speakers:[], research:[],
-    wallet:{balance:920000,txs:[{id:'TX-1001',type:'تمويل',amount:250000,to:'جمعية بناء',date:'2025-05-02'}]},
-    tickets:[{id:'SUP-4312',subject:'مساعدة رفع مشروع',status:'مفتوح',date:'2025-07-10'}],
-    users:[{id:100,name:'Admin',email:'admin@hasseef.sa',role:'admin'}],
-    keys:[], hooks:[]
-  };
-}
-if(!LS.get('SEED')) LS.set('SEED', defaultSeed());
+        <button data-account="القطاع غير الربحي" class="account-card text-start rounded-2xl border border-slate-200 bg-white p-5 hover:border-emerald-500 hover:shadow-md transition">
+          <div class="flex items-center justify-between">
+            <h3 class="font-extrabold">حساب القطاع غير الربحي</h3>
+            <span class="text-xs rounded-full bg-emerald-50 text-emerald-700 px-3 py-1">طلب تمويل</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">طرح مشاريع وبرامج، جذب متبرعين ومستثمرين، إدارة المتطوعين، قياس أثر.</p>
+        </button>
 
-/* ========== Router ========== */
-const routes={}; const app=$('#app');
-function route(hash,fn){ routes[hash]=fn; }
-function go(hash){ location.hash=hash; }
-function render(){
-  const hash=location.hash||'#dashboard';
-  $$('#sideNav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')===hash));
-  (routes[hash]||notFound)(app);
-}
-function notFound(el){ el.innerHTML = `<div class="card"><h3>غير موجود</h3><p class="muted">المسار غير متوفر.</p></div>`; }
-window.addEventListener('hashchange',render); window.addEventListener('load',()=>{ setLogosFromStorage(); render(); });
+        <button data-account="الجامعات" class="account-card text-start rounded-2xl border border-slate-200 bg-white p-5 hover:border-emerald-500 hover:shadow-md transition">
+          <div class="flex items-center justify-between">
+            <h3 class="font-extrabold">حساب الجامعات</h3>
+            <span class="text-xs rounded-full bg-slate-100 text-slate-700 px-3 py-1">تعزيز علمي</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">تعزيز علمي للمشاريع، شراكات بحثية واستشارية، فرص تدريب وتوظيف.</p>
+        </button>
 
-/* ========== Widgets ========== */
-const Pill=(t,cls='tag')=>`<span class="${cls}">${t}</span>`;
-const Toolbar=(title,extra='')=>`<div class="toolbar"><h3 style="margin:0">${title}</h3><div class="row">${extra}</div></div>`;
-function table(items, cols){ return `<table class="table"><thead><tr>${cols.map(c=>`<th>${c.label}</th>`).join('')}</tr></thead><tbody>${items.map(it=>`<tr>${cols.map(c=>`<td>${(typeof c.cell==='function'?c.cell(it):it[c.key])??''}</td>`).join('')}</tr>`).join('')}</tbody></table>`; }
+        <button data-account="الحكومة" class="account-card text-start rounded-2xl border border-slate-200 bg-white p-5 hover:border-emerald-500 hover:shadow-md transition">
+          <div class="flex items-center justify-between">
+            <h3 class="font-extrabold">حساب الحكومة</h3>
+            <span class="text-xs rounded-full bg-slate-100 text-slate-700 px-3 py-1">حلول</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">طلب حلول تكاملية، اعتماد الفعاليات، تقارير المناطق، متابعة المؤشرات.</p>
+        </button>
 
-/* ========== Exports ========== */
-function exportCSV(){
-  const data = LS.get('SEED').projects;
-  const rows = [['ID','Title','Sector','Region','Program','Budget','Status','KPI']].concat(
-    data.map(p=>[p.id,p.title,p.sector,p.region,p.program,p.budget,p.status,p.kpi])
-  );
-  const csv = rows.map(r=>r.map(x=>`"${(x??'').toString().replaceAll('"','""')}"`).join(',')).join('\n');
-  const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='projects.csv'; a.click();
-}
-function exportReportHTML(){
-  const d=LS.get('SEED').projects;
-  const html = `<html dir="rtl"><head><meta charset="utf-8"><title>تقرير حصيف</title></head><body style="font-family:Tahoma,Arial;line-height:1.6"><h2>تقرير المشاريع</h2><p>إجمالي: ${d.length}</p><table border="1" cellspacing="0" cellpadding="6"><tr><th>ID</th><th>العنوان</th><th>القطاع</th><th>المنطقة</th><th>البرنامج</th><th>الميزانية</th><th>الحالة</th></tr>${d.map(p=>`<tr><td>${p.id}</td><td>${p.title}</td><td>${p.sector}</td><td>${p.region}</td><td>${p.program}</td><td>${p.budget}</td><td>${p.status}</td></tr>`).join('')}</table></body></html>`;
-  const blob=new Blob([html],{type:'application/octet-stream'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='report.html'; a.click();
-}
+        <button data-account="المانحين" class="account-card text-start rounded-2xl border border-slate-200 bg-white p-5 hover:border-emerald-500 hover:shadow-md transition">
+          <div class="flex items-center justify-between">
+            <h3 class="font-extrabold">حساب المانحين</h3>
+            <span class="text-xs rounded-full bg-yellow-50 text-yellow-700 px-3 py-1">محفظة مانح</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">ملف مانح، فرص منح حسب المعايير، تقارير، محفظة ومؤشرات أداء.</p>
+        </button>
 
-/* ========== Forms (مختصرة ومتكاملة) ========== */
-function modal(title, body){ const root=document.createElement('div'); root.innerHTML=`<div style="position:fixed;inset:0;background:rgba(0,0,0,.5);display:grid;place-items:center;z-index:50"><div class="card" style="width:min(860px,95vw);max-height:86vh;overflow:auto"><div class="toolbar"><h3 style="margin:0">${title}</h3><button class="btn" onclick="this.closest('div[style]').remove()">✕</button></div><div>${body}</div></div></div>`; document.body.appendChild(root); return root; }
-function fieldRow(obj){ return `<div class="row">${obj.map(f=>`<div class="field">${f}</div>`).join('')}</div>`; }
+        <button data-account="الشركاء الاستراتيجيون" class="account-card text-start rounded-2xl border border-slate-200 bg-white p-5 hover:border-emerald-500 hover:shadow-md transition">
+          <div class="flex items-center justify-between">
+            <h3 class="font-extrabold">حساب الشركاء الاستراتيجيين</h3>
+            <span class="text-xs rounded-full bg-emerald-50 text-emerald-700 px-3 py-1">تمكين</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">تمكين الجهات الوطنية (مركز أداء، NCDC، منشآت، الوزارات) بواجهات بيانات ومؤشرات.</p>
+        </button>
+      </div>
 
-function formProject(){
-  const el = modal('إنشاء مشروع', `
-    ${fieldRow([`<label>اسم المشروع*</label><input id="p_title" maxlength="120" required placeholder="مثال: مبادرة تمكين الأسر المنتجة"/>`,
-                `<label>القطاع*</label><select id="p_sector"><option>حكومي</option><option>خاص</option><option>غير ربحي</option><option>جامعات</option></select>`,
-                `<label>المنطقة*</label><select id="p_region"><option>الرياض</option><option>مكة</option><option>حائل</option><option>الشرقية</option></select>`])}
-    ${fieldRow([`<label>برنامج الرؤية</label><select id="p_program"><option>جودة الحياة</option><option>التحول الوطني</option><option>تنمية القدرات البشرية</option><option>تطوير القطاع المالي</option></select>`,
-                `<label>الميزانية (ر.س)</label><input id="p_budget" type="number" min="0" step="1000" placeholder="100000"/>`,
-                `<label>الحالة</label><select id="p_status"><option>مسودة</option><option selected>نشط</option><option>قيد المراجعة</option><option>مكتمل</option></select>`])}
-    ${fieldRow([`<label>الجهة المنفذة</label><input id="p_org" placeholder="اسم الجهة"/>`,
-                `<label>نطاق التنفيذ</label><input id="p_scope" placeholder="محلي/وطني/إقليمي"/>`,
-                `<label>مؤشرات (KPIs)</label><input id="p_kpis" placeholder="عدد المستفيدين؛ التكلفة لكل مستفيد..."/>`])}
-    ${fieldRow([`<label>وصف مختصر</label><textarea id="p_desc" maxlength="600"></textarea>`])}
-    ${fieldRow([`<button class="btn primary" id="p_save">حفظ</button>`, `<button class="btn" onclick="this.closest('div[style]').remove()">إلغاء</button>`])}
-  `);
-  $('#p_save', el).onclick = ()=>{
-    const p={
-      id:Date.now(),
-      title:$('#p_title',el).value.trim(),
-      sector:$('#p_sector',el).value, region:$('#p_region',el).value, program:$('#p_program',el).value,
-      budget:+($('#p_budget',el).value||0), status:$('#p_status',el).value, org:$('#p_org',el).value,
-      scope:$('#p_scope',el).value, kpi:$('#p_kpis',el).value, desc:$('#p_desc',el).value
+      <!-- Modal for account details -->
+      <div id="accountModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/40" data-close></div>
+        <div class="relative max-w-3xl w-full rounded-3xl bg-white p-6 shadow-2xl border border-slate-200">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 id="modalTitle" class="text-xl font-extrabold">عنوان الحساب</h3>
+              <p id="modalSub" class="mt-1 text-slate-600 text-sm">وصف موجز للحساب.</p>
+            </div>
+            <button class="rounded-xl border border-slate-200 p-2 hover:bg-slate-50" data-close>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 1 0-1.06-1.06L10 8.94 6.28 5.22Z"/></svg>
+            </button>
+          </div>
+
+          <div class="mt-5 grid md:grid-cols-12 gap-6">
+            <div class="md:col-span-7 space-y-4">
+              <div class="rounded-2xl border border-slate-200 p-4">
+                <h4 class="font-bold">الخدمات الأساسية</h4>
+                <ul id="modalServices" class="mt-2 text-sm text-slate-700 list-disc pr-5 space-y-1"></ul>
+              </div>
+              <div class="rounded-2xl border border-slate-200 p-4">
+                <h4 class="font-bold">الصلاحيات</h4>
+                <ul id="modalPerms" class="mt-2 text-sm text-slate-700 list-disc pr-5 space-y-1"></ul>
+              </div>
+            </div>
+            <div class="md:col-span-5 space-y-4">
+              <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+                <h4 class="font-bold text-emerald-900">الربط والتكامل</h4>
+                <p id="modalApi" class="mt-2 text-sm text-emerald-900">بنية API رمزية توضح نقاط الربط مع بقية الحسابات.</p>
+              </div>
+              <div class="rounded-2xl border border-yellow-200 bg-yellow-50 p-4">
+                <h4 class="font-bold text-yellow-900">قيمة مضافة</h4>
+                <p id="modalValue" class="mt-2 text-sm text-yellow-900">كيف يضيف الحساب قيمة ضمن المنصة.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERVICES & PERMISSIONS (overview) -->
+  <section id="services" class="section py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-black">الخدمات والصلاحيات (نظرة عامة)</h2>
+      <p class="mt-2 text-slate-600">تمثيل موجز لأبرز الخدمات المشتركة عبر الحسابات مع آلية صلاحيات واضحة.</p>
+
+      <div class="mt-8 grid md:grid-cols-2 gap-6">
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <h3 class="font-extrabold">خدمات مشتركة</h3>
+          <ul class="mt-3 text-sm text-slate-700 space-y-2">
+            <li>إدارة المبادرات/المشاريع (إنشاء، تعديل، متابعة، إغلاق).</li>
+            <li>محفظة مالية (تبرع، استثمار، اشتراك، رعاية) مع سجلات ومعاملات.</li>
+            <li>فرص (وظائف، تدريب، تطوع، منح، فعاليات) مع ترشيح ذكي.</li>
+            <li>تقارير ومؤشرات أداء وربط بأهداف الرؤية.</li>
+            <li>مراسلات وإشعارات مركزية، وإدارة ملفات وشهادات.</li>
+          </ul>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <h3 class="font-extrabold">طبقات الصلاحيات</h3>
+          <ul class="mt-3 text-sm text-slate-700 space-y-2">
+            <li>مالك الحساب: جميع الصلاحيات بما فيها الربط والتكامل.</li>
+            <li>مدير: إدارة المحتوى والموافقات والتقارير.</li>
+            <li>مشغّل: تنفيذ ومتابعة دون تغيير الإعدادات العليا.</li>
+            <li>مراقب: عرض التقارير والمؤشرات فقط.</li>
+            <li>زائر: وصول محدود للعرض العام.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-6 rounded-3xl border border-slate-200 bg-emerald-50 p-6 text-emerald-900">
+        <p class="text-sm">ملاحظة: تتسع البنية للتخصيص لكل حساب حتى 4 مستويات للخدمة، وفق النموذج المعتمد سابقًا.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANAGEMENT -->
+  <section id="management" class="section py-16 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-black">إدارة المنصة</h2>
+          <p class="mt-2 text-slate-600">لوحة شاملة للمشرف العام وإدارة الدعم الفني ومقترحات التحسين.</p>
+        </div>
+        <a href="#support" class="text-sm text-emerald-700 hover:underline">إرسال مقترح تحسين</a>
+      </div>
+
+      <div class="mt-8 grid lg:grid-cols-3 gap-6">
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <h3 class="font-bold">لوحة المشرف العام</h3>
+          <ul class="mt-3 text-sm text-slate-700 space-y-2">
+            <li>إدارة الحسابات والمستخدمين والتراخيص.</li>
+            <li>مراقبة المؤشرات العامة والتقارير المجمّعة.</li>
+            <li>إدارة التكاملات (API Keys / Webhooks).</li>
+            <li>مركز الإشعارات والتنبيهات.</li>
+          </ul>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <h3 class="font-bold">الدعم الفني</h3>
+          <ul class="mt-3 text-sm text-slate-700 space-y-2">
+            <li>تذاكر دعم مصنّفة حسب الأولوية.</li>
+            <li>قاعدة معرفة ومقالات مساعدة.</li>
+            <li>اتصال مباشر عبر البريد/الهاتف/الواتساب.</li>
+            <li>اتفاقية مستوى الخدمة (SLA) حسب الباقة.</li>
+          </ul>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <h3 class="font-bold">مقترحات التحسين</h3>
+          <ul class="mt-3 text-sm text-slate-700 space-y-2">
+            <li>صندوق الأفكار مع تصويت المجتمع.</li>
+            <li>خارطة طريق عامة وتحديثات النسخ.</li>
+            <li>تحليلات رضا المستخدم (CSAT/NPS).</li>
+            <li>لوحة تفاعل مع الرعاة والشركاء.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING / SUBSCRIPTIONS -->
+  <section id="pricing" class="section py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-black">باقات الاشتراك للحسابات</h2>
+      <p class="mt-2 text-slate-600">مرونة في المزايا بحسب احتياج كل حساب. يمكن تخصيص المزايا للجهات الكبرى.</p>
+
+      <div class="mt-8 grid lg:grid-cols-3 gap-6">
+        <!-- Basic -->
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="flex items-baseline justify-between">
+            <h3 class="font-extrabold">أساسي</h3>
+            <span class="text-xs rounded-full bg-slate-100 text-slate-700 px-3 py-1">لبداية آمنة</span>
+          </div>
+          <p class="mt-1 text-sm text-slate-600">خدمات أساسية، دعم قياسي، تقارير عامة.</p>
+          <p class="mt-4 text-3xl font-black text-slate-900">—</p>
+          <ul class="mt-4 text-sm text-slate-700 space-y-2">
+            <li>إدارة مشاريع/مبادرات حتى 25 عنصرًا</li>
+            <li>محفظة معاملات أساسية</li>
+            <li>تكامل محدود (Webhook واحد)</li>
+            <li>مستخدمان + مراقب واحد</li>
+          </ul>
+          <button class="mt-6 w-full rounded-xl bg-slate-900 text-white py-2.5">ابدأ الآن</button>
+        </div>
+        <!-- Pro -->
+        <div class="rounded-3xl border-2 border-emerald-600 bg-white p-6 shadow-xl">
+          <div class="flex items-baseline justify-between">
+            <h3 class="font-extrabold">متقدم</h3>
+            <span class="text-xs rounded-full bg-emerald-50 text-emerald-700 px-3 py-1">الأكثر استخدامًا</span>
+          </div>
+          <p class="mt-1 text-sm text-slate-600">قدرات أوسع وتقارير تفصيلية ودعم أسرع.</p>
+          <p class="mt-4 text-3xl font-black text-emerald-700">—</p>
+          <ul class="mt-4 text-sm text-slate-700 space-y-2">
+            <li>مشاريع غير محدودة عمليًا</li>
+            <li>محفظة ذكية وتقارير مالية</li>
+            <li>تكامل API ومفاتيح متعددة</li>
+            <li>5 مستخدمين + 3 مراقبين</li>
+          </ul>
+          <button class="mt-6 w-full rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white py-2.5">ابدأ الآن</button>
+        </div>
+        <!-- Enterprise -->
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="flex items-baseline justify-between">
+            <h3 class="font-extrabold">متميز</h3>
+            <span class="text-xs rounded-full bg-yellow-50 text-yellow-700 px-3 py-1">مؤسسي</span>
+          </div>
+          <p class="mt-1 text-sm text-slate-600">لجهات كبرى مع احتياجات تكامل وأمن متقدم.</p>
+          <p class="mt-4 text-3xl font-black text-slate-900">—</p>
+          <ul class="mt-4 text-sm text-slate-700 space-y-2">
+            <li>حَوكمة وصلاحيات متقدمة</li>
+            <li>اتفاقيات مستوى خدمة (SLA)</li>
+            <li>استضافة/نطاقات خاصة</li>
+            <li>مدير نجاح مخصص</li>
+          </ul>
+          <button class="mt-6 w-full rounded-xl bg-slate-900 text-white py-2.5">تواصل معنا</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPONSORS -->
+  <section id="sponsors" class="section py-16 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-black">فئات رعاة المنصة (وليس رعاة المشاريع)</h2>
+      <p class="mt-2 text-slate-600">فرصة وطنية تنموية وتسويقية للبنوك والشركات الكبرى والجهات الداعمة.</p>
+
+      <div class="mt-8 grid md:grid-cols-5 gap-6">
+        <div class="rounded-3xl border border-yellow-300 bg-yellow-50 p-6">
+          <h3 class="font-bold text-yellow-800">راعي استراتيجي</h3>
+          <ul class="mt-3 text-sm text-yellow-900 space-y-1">
+            <li>هوية مشتركة في الواجهة</li>
+            <li>تقرير أثر وطني مخصص</li>
+            <li>مساحات ترويجية رئيسية</li>
+          </ul>
+        </div>
+        <div class="rounded-3xl border border-yellow-300 bg-yellow-50 p-6">
+          <h3 class="font-bold text-yellow-800">بلاتيني</h3>
+          <ul class="mt-3 text-sm text-yellow-900 space-y-1">
+            <li>شعار في الصفحة الرئيسية</li>
+            <li>تقارير أداء ربع سنوية</li>
+            <li>دعوات لفعاليات رسمية</li>
+          </ul>
+        </div>
+        <div class="rounded-3xl border border-yellow-300 bg-yellow-50 p-6">
+          <h3 class="font-bold text-yellow-800">ذهبي</h3>
+          <ul class="mt-3 text-sm text-yellow-900 space-y-1">
+            <li>شعار في صفحات باطنية</li>
+            <li>تقارير تأثير نصف سنوية</li>
+            <li>محتوى تعريفي مشترك</li>
+          </ul>
+        </div>
+        <div class="rounded-3xl border border-yellow-300 bg-yellow-50 p-6">
+          <h3 class="font-bold text-yellow-800">فضي</h3>
+          <ul class="mt-3 text-sm text-yellow-900 space-y-1">
+            <li>ظهور في صفحات الشركاء</li>
+            <li>نشرة دورية</li>
+            <li>حضور مناسبات</li>
+          </ul>
+        </div>
+        <div class="rounded-3xl border border-yellow-300 bg-yellow-50 p-6">
+          <h3 class="font-bold text-yellow-800">برونزي</h3>
+          <ul class="mt-3 text-sm text-yellow-900 space-y-1">
+            <li>ذكر كشريك داعم</li>
+            <li>تقارير سنوية عامة</li>
+            <li>دعوات محدودة</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section id="partners" class="section py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-black">الشركاء الاستراتيجيون</h2>
+      <p class="mt-2 text-slate-600">واجهات وتمكين لجهات وطنية لضمان التكامل والشفافية.</p>
+
+      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 text-sm">المركز الوطني لتنمية القطاع غير الربحي (NCDC)</div>
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 text-sm">مركز أداء</div>
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 text-sm">وزارة الاقتصاد والتخطيط</div>
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 text-sm">وزارة المالية</div>
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 text-sm">وزارة الداخلية (إمارات المناطق)</div>
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 text-sm">وزارة الثقافة</div>
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 text-sm">وزارة التعليم</div>
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 text-sm">منشآت</div>
+      </div>
+
+      <div class="mt-6 rounded-2xl bg-emerald-50 border border-emerald-200 p-4 text-sm text-emerald-900">
+        لدى كل شريك لوحة متابعة مؤشرات، وربط مباشر بمشاريع/فعاليات مرتبطة بأهداف الرؤية، وإمكانات تقارير مخصّصة.
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPPORT / FEEDBACK -->
+  <section id="support" class="section py-16 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-black">الدعم والمقترحات</h2>
+      <p class="mt-2 text-slate-600">نسعد باستقبال استفساراتكم ومقترحات التحسين لرفع جودة المنصة وأثرها.</p>
+
+      <form class="mt-8 grid lg:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-semibold">الاسم</label>
+          <input type="text" class="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600" placeholder="الاسم الكامل"/>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold">البريد الإلكتروني</label>
+          <input type="email" class="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600" placeholder="name@example.com"/>
+        </div>
+        <div class="lg:col-span-2">
+          <label class="block text-sm font-semibold">نوع الرسالة</label>
+          <select class="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600">
+            <option>استفسار</option>
+            <option>مقترح تحسين</option>
+            <option>بلاغ تقني</option>
+            <option>طلب شراكة/رعاية</option>
+          </select>
+        </div>
+        <div class="lg:col-span-2">
+          <label class="block text-sm font-semibold">الرسالة</label>
+          <textarea rows="5" class="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600" placeholder="اكتب رسالتك هنا..."></textarea>
+        </div>
+        <div class="lg:col-span-2 flex items-center justify-between">
+          <div class="flex items-center gap-2 text-sm text-slate-600">
+            <input id="consent" type="checkbox" class="h-4 w-4 rounded border-slate-300"/>
+            <label for="consent">أوافق على سياسة الخصوصية</label>
+          </div>
+          <button type="button" id="sendBtn" class="rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 text-sm font-semibold">إرسال</button>
+        </div>
+        <p id="sendResult" class="lg:col-span-2 hidden text-sm"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-10 border-t border-slate-200 bg-slate-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-slate-600">© 2025 منصة حصيف — جميع الحقوق محفوظة</p>
+        <div class="flex items-center gap-4 text-sm">
+          <a href="#" class="hover:underline">سياسة الخصوصية</a>
+          <span class="text-slate-300">|</span>
+          <a href="#" class="hover:underline">شروط الاستخدام</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DATA & INTERACTION SCRIPTS -->
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuBtn) menuBtn.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
+
+    // Account search filter
+    const search = document.getElementById('accountSearch');
+    const cards = Array.from(document.querySelectorAll('.account-card'));
+    if (search) {
+      search.addEventListener('input', (e)=>{
+        const q = e.target.value.trim();
+        cards.forEach(c=>{
+          const key = (c.getAttribute('data-account')||'') + ' ' + c.innerText;
+          c.style.display = key.includes(q) ? '' : 'none';
+        });
+      });
+    }
+
+    // Modal data per account
+    const accountDetails = {
+      'حساب الأفراد': {
+        sub: 'مبادراتي — تمكين الأفراد من المشاركة التنموية.',
+        services: [
+          'إدراج مبادرة عبر نموذج اللبنات التسع',
+          'التقديم على فرص (وظائف، تدريب، تطوع، فعاليات)',
+          'محفظة فردية للتبرع/الاستثمار',
+          'ملف إنجازات وشهادات',
+        ],
+        perms: ['إضافة/تعديل مبادرات', 'التقديم على الفرص', 'إدارة المحفظة والمعاملات', 'عرض التقارير الشخصية'],
+        api: 'POST /api/initiatives  •  GET /api/opportunities  •  POST /api/wallet/transfer',
+        value: 'رفع المشاركة المجتمعية وتسريع مواءمة المواهب مع الفرص.'
+      },
+      'حساب القطاع الخاص': {
+        sub: 'مسؤولية اجتماعية وتبني مشاريع أثرية.',
+        services: [
+          'فرص منح ورعاية تجارية',
+          'تقارير أثر وربط بأهداف الرؤية',
+          'لوحة التزامات CSR ومحفظة الشركة',
+          'ربط مع الجهات الحكومية والجامعات'
+        ],
+        perms: ['اعتماد تمويل المشاريع', 'إنشاء فرص رعاية', 'استعراض تقارير الأثر', 'وصول API للتقارير'],
+        api: 'GET /api/csr/reports  •  POST /api/grants  •  POST /api/sponsorships',
+        value: 'تعزيز صورة الشركة وتحقيق أثر ملموس وقابل للقياس.'
+      },
+      'حساب القطاع غير الربحي': {
+        sub: 'تمويل، متطوعون، قياس أثر، إدارة فعاليات.',
+        services: [
+          'طرح مشاريع وبرامج مع ملف الأثر',
+          'جذب متبرعين ومستثمرين',
+          'إدارة المتطوعين والتدريب',
+          'تحليل أثر وتقارير شفافة'
+        ],
+        perms: ['إدارة المشاريع والمتطوعين', 'استلام التبرعات', 'التقارير التفصيلية', 'تكامل مع الشركاء'],
+        api: 'POST /api/projects  •  GET /api/donors  •  GET /api/impact',
+        value: 'رفع كفاءة العمل الخيري وشفافيته وتوسيع قاعدة الداعمين.'
+      },
+      'حساب الجامعات': {
+        sub: 'تعزيز علمي واستشارات ومختبرات ابتكار.',
+        services: [
+          'تعزيز علمي للمشاريع وقابلية التطبيق',
+          'شراكات بحثية واستشارية',
+          'فرص تدريب تعاوني وتوظيف',
+          'إدراج مرافق جامعية للاستثمار/الإيجار'
+        ],
+        perms: ['اعتماد تعزيز علمي', 'نشر فرص تدريب', 'تقارير عوائد الشراكات', 'إدارة المرافق المدرجة'],
+        api: 'POST /api/universities/reviews  •  GET /api/internships  •  POST /api/facilities',
+        value: 'رفع جودة المشاريع وتقليل الهدر ودعم الاقتصاد المعرفي.'
+      },
+      'حساب الحكومة': {
+        sub: 'حلول، فعاليات، مؤشرات المناطق، موافقات.',
+        services: [
+          'طلب حلول تكاملية من القطاعات',
+          'اعتماد ورفض فعاليات مع إدارة المشاركين',
+          'لوحات مؤشرات المناطق (وظائف، فرص، منح)',
+          'ربط المبادرات بالأهداف الثلاثية للرؤية'
+        ],
+        perms: ['إدارة طلبات الحلول', 'إدارة منظومة الفعاليات', 'اعتماد المبادرات', 'لوحات مؤشرات متقدمة'],
+        api: 'GET /api/regions/metrics  •  POST /api/solutions  •  POST /api/events/approvals',
+        value: 'تعزيز فاعلية الحكومة ورفع كفاءة الإنفاق وضمان الشفافية.'
+      },
+      'حساب المانحين': {
+        sub: 'محفظة مانح، فرص حسب المعايير، تقارير أثر.',
+        services: [
+          'تصفّح فرص المنح بحسب معايير مانح',
+          'محفظة مانح وإدارة اشتراكات/استثمارات',
+          'تقارير أثر مخصصة',
+          'بروفايل مانح قابل للمشاركة'
+        ],
+        perms: ['اعتماد منح', 'إدارة المحفظة', 'وصول للتقارير', 'لوائح تفضيلات التمويل'],
+        api: 'GET /api/opportunities?filters=donor  •  GET /api/donor/reports  •  POST /api/wallet',
+        value: 'رفع جودة التوجيه المالي وتوسيع الأثر المستدام.'
+      },
+      'حساب الشركاء الاستراتيجيين': {
+        sub: 'واجهات بيانات ومؤشرات وطنية وربط تكاملي.',
+        services: [
+          'لوحات متابعة مؤشرات (NCDC/أداء/منشآت/وزارات)',
+          'تقارير مشتركة وتبادل بيانات',
+          'بوابات ربط للأجهزة الحكومية',
+          'قوالب قياس موحدة'
+        ],
+        perms: ['إدارة التكاملات', 'قراءة/تصدير بيانات', 'اعتماد تقارير مشتركة', 'إدارة نطاقات خاصة'],
+        api: 'GET /api/partners/kpis  •  POST /api/data-exchange  •  GET /api/government/gateways',
+        value: 'ضمان تكامل وطني شامل ومواءمة الجهود عبر القطاعات.'
+      }
     };
-    if(!p.title) return alert('اسم المشروع مطلوب'); const db=LS.get('SEED'); db.projects.unshift(p); LS.set('SEED',db); el.remove(); render();
-  };
-}
-function formEvent(){
-  const el = modal('إنشاء فعالية', `
-    ${fieldRow([`<label>اسم الفعالية*</label><input id="e_title" required/>`,
-                `<label>التاريخ*</label><input id="e_date" type="date" required/>`,
-                `<label>المدينة</label><input id="e_city" placeholder="الرياض"/>`])}
-    ${fieldRow([`<label>الموقع/المرفق</label><input id="e_venue" placeholder="قاعة/مسرح"/>`,
-                `<label>النوع</label><select id="e_type"><option>ملتقى</option><option>ورشة</option><option>مؤتمر</option></select>`,
-                `<label>السعة</label><input id="e_capacity" type="number" min="1" step="10"/>`])}
-    ${fieldRow([`<label>وصف</label><textarea id="e_desc"></textarea>`])}
-    ${fieldRow([`<button class="btn primary" id="e_save">حفظ</button>`, `<button class="btn" onclick="this.closest('div[style]').remove()">إلغاء</button>`])}
-  `);
-  $('#e_save', el).onclick = ()=>{
-    const v={id:Date.now(), title:$('#e_title',el).value.trim(), date:$('#e_date',el).value, city:$('#e_city',el).value,
-             venue:$('#e_venue',el).value, type:$('#e_type',el).value, capacity:+($('#e_capacity',el).value||0),
-             desc:$('#e_desc',el).value};
-    if(!v.title||!v.date) return alert('العنوان والتاريخ مطلوبان'); const db=LS.get('SEED'); db.events.unshift(v); LS.set('SEED',db); el.remove(); render();
-  };
-}
-function formFacility(){
-  const el = modal('إضافة مرفق', `
-    ${fieldRow([`<label>اسم المرفق*</label><input id="f_name" required/>`,
-                `<label>المدينة</label><input id="f_city"/>`,
-                `<label>السعة</label><input id="f_capacity" type="number" min="1"/>`])}
-    ${fieldRow([`<label>متاح للحجز؟</label><select id="f_available"><option value="true">نعم</option><option value="false">لا</option></select>`,
-                `<label>نوع المرفق</label><select id="f_type"><option>قاعة</option><option>مسرح</option><option>مختبر</option><option>ملعب</option></select>`,
-                `<label>رسوم (إن وجدت)</label><input id="f_fee" type="number" min="0" step="10"/>`])}
-    ${fieldRow([`<button class="btn primary" id="f_save">حفظ</button>`, `<button class="btn" onclick="this.closest('div[style]').remove()">إلغاء</button>`])}
-  `);
-  $('#f_save', el).onclick = ()=>{
-    const x={id:Date.now(), name:$('#f_name',el).value.trim(), city:$('#f_city',el).value, capacity:+($('#f_capacity',el).value||0),
-             available:$('#f_available',el).value==='true', type:$('#f_type',el).value, fee:+($('#f_fee',el).value||0)};
-    if(!x.name) return alert('اسم المرفق مطلوب'); const db=LS.get('SEED'); db.facilities.unshift(x); LS.set('SEED',db); el.remove(); render();
-  };
-}
-function formGrant(){
-  const el = modal('دعوة تمويل/منحة', `
-    ${fieldRow([`<label>العنوان*</label><input id="g_title" required/>`,
-                `<label>الفئة المستهدفة</label><select id="g_audience"><option>حكومي</option><option>خاص</option><option>غير ربحي</option><option>جامعات</option></select>`,
-                `<label>السقف المالي (ر.س)</label><input id="g_cap" type="number" min="0" step="10000"/>`])}
-    ${fieldRow([`<label>آخر موعد للتقديم</label><input id="g_deadline" type="date"/>`,
-                `<label>اشتراطات أساسية</label><textarea id="g_rules" placeholder="خطة عمل؛ مؤشرات أثر؛ استدامة…"></textarea>`])}
-    ${fieldRow([`<button class="btn primary" id="g_save">نشر الدعوة</button>`, `<button class="btn" onclick="this.closest('div[style]').remove()">إلغاء</button>`])}
-  `);
-  $('#g_save', el).onclick=()=>{
-    const g={id:Date.now(), title:$('#g_title',el).value.trim(), audience:$('#g_audience',el).value,
-             cap:+($('#g_cap',el).value||0), deadline:$('#g_deadline',el).value, rules:$('#g_rules',el).value, status:'مفتوحة'};
-    if(!g.title) return alert('العنوان مطلوب'); const db=LS.get('SEED'); db.grants.unshift(g); LS.set('SEED',db); el.remove(); render();
-  };
-}
-function formSpeaker(){
-  const el = modal('متحدث/مدرب', `
-    ${fieldRow([`<label>الاسم*</label><input id="sp_name" required/>`,
-                `<label>التخصص</label><input id="sp_spec"/>`,
-                `<label>رابط السيرة</label><input id="sp_cv" placeholder="https://..." />`])}
-    ${fieldRow([`<label>المدينة</label><input id="sp_city"/>`,
-                `<label>أتعاب تقديرية</label><input id="sp_fee" type="number" min="0" step="100"/>`])}
-    ${fieldRow([`<button class="btn primary" id="sp_save">حفظ</button>`, `<button class="btn" onclick="this.closest('div[style]').remove()">إلغاء</button>`])}
-  `);
-  $('#sp_save', el).onclick=()=>{
-    const s={id:Date.now(), name:$('#sp_name',el).value.trim(), spec:$('#sp_spec',el).value, cv:$('#sp_cv',el).value, city:$('#sp_city',el).value, fee:+($('#sp_fee',el).value||0)};
-    if(!s.name) return alert('الاسم مطلوب'); const db=LS.get('SEED'); (db.speakers=db.speakers||[]).unshift(s); LS.set('SEED',db); el.remove(); render();
-  };
-}
 
-/* ========== Sections (Routes) ========== */
-route('#dashboard', el=>{
-  const db = LS.get('SEED').projects;
-  const facilities = LS.get('SEED').facilities;
-  el.innerHTML = `
-    <div class="wrap">
-      <div class="grid kpi">
-        <div class="card kpi"><div><div class="muted">المشاريع</div><div class="n">${db.length}</div></div>${Pill('نشط','status ok')}</div>
-        <div class="card kpi"><div><div class="muted">المرافق</div><div class="n">${facilities.length}</div></div>${Pill('جاهز','status')}</div>
-        <div class="card kpi"><div><div class="muted">الفعاليات</div><div class="n">${LS.get('SEED').events.length}</div></div>${Pill('قريبًا','status warn')}</div>
-        <div class="card kpi"><div><div class="muted">المنح</div><div class="n">${LS.get('SEED').grants.length}</div></div>${Pill('مفتوح','status')}</div>
-      </div>
+    // Open modal with dynamic content
+    const modal = document.getElementById('accountModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSub = document.getElementById('modalSub');
+    const modalServices = document.getElementById('modalServices');
+    const modalPerms = document.getElementById('modalPerms');
+    const modalApi = document.getElementById('modalApi');
+    const modalValue = document.getElementById('modalValue');
 
-      <div class="grid two">
-        <div class="card">
-          ${Toolbar('المشاريع الأحدث', `<button class="btn primary" onclick="formProject()">+ مشروع</button>`)}
-          ${table(db.slice(0,8),[
-            {key:'id',label:'#'},{key:'title',label:'العنوان'},{key:'sector',label:'القطاع'},{key:'region',label:'المنطقة'},
-            {key:'status',label:'الحالة',cell:p=>`<span class="status ${p.status==='مكتمل'?'ok':(p.status==='قيد المراجعة'?'warn':'')}">${p.status}</span>`}
-          ])}
-        </div>
-        <div class="card">
-          ${Toolbar('المرافق', `<button class="btn" onclick="formFacility()">+ مرفق</button>`)}
-          ${table(facilities.slice(0,8),[
-            {key:'name',label:'المرفق'},{key:'city',label:'المدينة'},{key:'capacity',label:'السعة'},
-            {key:'available',label:'الحجز',cell:f=>f.available?Pill('متاح','status ok'):Pill('محجوز','status bad')}
-          ])}
-        </div>
-      </div>
-    </div>`;
-});
+    cards.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const title = btn.querySelector('h3').innerText.trim();
+        const d = accountDetails[title];
+        if (!d) return;
+        modalTitle.textContent = title;
+        modalSub.textContent = d.sub;
+        modalServices.innerHTML = d.services.map(s=>`<li>${s}</li>`).join('');
+        modalPerms.innerHTML = d.perms.map(p=>`<li>${p}</li>`).join('');
+        modalApi.textContent = d.api;
+        modalValue.textContent = d.value;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      })
+    });
 
-route('#map', el=>{
-  el.innerHTML = `
-    <div class="card">
-      ${Toolbar('الخريطة التفاعلية','<span class="badge">Leaflet لاحقًا</span>')}
-      <div style="height:420px;background:linear-gradient(135deg,#1a1d22,#0f1115);border:1px solid var(--border);border-radius:14px;display:grid;place-items:center">
-        <div class="muted">منطقة الخريطة — ربط لاحقًا بـ Leaflet/OSM</div>
-      </div>
-    </div>`;
-});
+    modal.addEventListener('click', (e)=>{
+      if (e.target.hasAttribute('data-close')) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    });
 
-route('#stories', el=>{
-  const list = LS.get('SEED').stories;
-  el.innerHTML = `
-    <div class="card">
-      ${Toolbar('قصص الأثر', `<button class="btn" onclick="alert('نموذج قصة أثر قادم')">+ قصة أثر</button>`)}
-      <div class="grid three">
-        ${list.map(s=>`<div class="card" style="background:#262a31"><h3>${s.title}</h3><div class="muted">${s.by} — ${s.region}</div><div class="chips" style="margin-top:8px">${Pill(s.impact,'tag')}</div></div>`).join('')}
-      </div>
-    </div>`;
-});
-
-route('#reports', el=>{
-  const db = LS.get('SEED').projects;
-  el.innerHTML = `
-    <div class="grid two">
-      <div class="card">
-        ${Toolbar('تقرير المشاريع حسب القطاع','<button class="btn" onclick="exportCSV()">CSV</button>')}
-        ${table(db,[{key:'sector',label:'القطاع'},{key:'title',label:'العنوان'},{key:'region',label:'المنطقة'},{key:'program',label:'البرنامج'},{key:'budget',label:'الميزانية'}])}
-      </div>
-      <div class="card">
-        ${Toolbar('لوحة المؤشرات')}
-        <div class="grid kpi" style="grid-template-columns:repeat(3,1fr)">
-          <div class="card kpi"><div><div class="muted">CSR</div><div class="n">38</div></div>${Pill('Q3','status')}</div>
-          <div class="card kpi"><div><div class="muted">فعاليات</div><div class="n">24</div></div>${Pill('قريبًا','status warn')}</div>
-          <div class="card kpi"><div><div class="muted">أبحاث</div><div class="n">15</div></div>${Pill('دمج','status ok')}</div>
-        </div>
-        <div class="row" style="margin-top:10px"><button class="btn" onclick="exportReportHTML()">تقرير HTML</button></div>
-      </div>
-    </div>`;
-});
-
-route('#ai', el=>{
-  el.innerHTML = `
-    <div class="card">
-      ${Toolbar('AI Lab — المستشار الذكي')}
-      <div class="row">
-        <div class="field"><label>اسأل عن ربط مبادرتك بالرؤية</label><input id="aiq" placeholder="مثال: تمكين الأسر في مكة"/></div>
-        <button class="btn primary" onclick="aiAnswer()">تشخيص ذكي</button>
-      </div>
-      <div id="aiAns" class="card" style="margin-top:12px;background:#262a31"></div>
-    </div>`;
-});
-function aiAnswer(){
-  const q=$('#aiq').value.trim(); if(!q) return;
-  $('#aiAns').innerHTML = `<div><b>تحليل:</b> ${q}</div><ul><li>برامج ملائمة: جودة الحياة / HCD</li><li>شركاء: بنك التنمية، وزارة الموارد</li><li>تمويل: مانحون + CSR</li><li>KPIs: وظائف، دخل، نطاق</li></ul>${Pill('ملاءمة عالية','status ok')}`;
-}
-
-route('#integrations', el=>{
-  const keys = LS.get('SEED').keys||[]; const hooks = LS.get('SEED').hooks||[];
-  el.innerHTML = `
-    <div class="grid two">
-      <div class="card">
-        ${Toolbar('مفاتيح API')}
-        <div class="row"><div class="field"><label>اسم التطبيق</label><input id="apiName"/></div><button class="btn primary" onclick="genKey()">توليد</button></div>
-        <div id="apiKeys" class="wrap">${keys.map(k=>`<div class="card"><b>${k.name||'App'}</b><div class="muted">${k.key||k}</div></div>`).join('')}</div>
-      </div>
-      <div class="card">
-        ${Toolbar('Webhooks')}
-        <div class="row">
-          <div class="field"><label>URL</label><input id="whUrl" placeholder="https://example.com/hook"/></div>
-          <div class="field"><label>حدث</label><select id="whEvt"><option>project.created</option><option>funding.approved</option><option>ticket.opened</option></select></div>
-          <button class="btn primary" onclick="addHook()">إضافة</button>
-        </div>
-        <div id="hooks" class="wrap">${hooks.map(u=>`<div class="card"><div class="row"><span>${u.event||'event'}</span><span class="muted">${u.url||u}</span></div></div>`).join('')}</div>
-      </div>
-    </div>`;
-});
-function genKey(){ const name=$('#apiName').value||'App'; const db=LS.get('SEED'); (db.keys=db.keys||[]).unshift({name, key:'key_'+Math.random().toString(36).slice(2,10)}); LS.set('SEED',db); render(); }
-function addHook(){ const url=$('#whUrl').value.trim(); if(!url) return; const evt=$('#whEvt').value; const db=LS.get('SEED'); (db.hooks=db.hooks||[]).unshift({event:evt,url}); LS.set('SEED',db); render(); }
-
-route('#wallet', el=>{
-  const w = LS.get('SEED').wallet;
-  el.innerHTML = `
-    <div class="grid two">
-      <div class="card">
-        ${Toolbar('الرصيد')}
-        <div class="kpi"><div><div class="muted">الرصيد الحالي</div><div class="n">${(w.balance||0).toLocaleString()} ر.س</div></div>${Pill('محفظة')}</div>
-        <div class="row" style="margin-top:12px">
-          <div class="field"><label>المبلغ</label><input id="amt" type="number" min="1" placeholder="1000"/></div>
-          <div class="field"><label>الجهة المستفيدة</label><input id="to" placeholder="اسم الجهة"/></div>
-          <button class="btn primary" onclick="transfer()">تحويل</button>
-        </div>
-      </div>
-      <div class="card">
-        ${Toolbar('السجل')}
-        ${table((w.txs||[]),[{key:'id',label:'#'},{key:'type',label:'النوع'},{key:'amount',label:'المبلغ',cell:t=>t.amount.toLocaleString()+' ر.س'},{key:'to',label:'إلى'},{key:'date',label:'التاريخ'}])}
-      </div>
-    </div>`;
-});
-function transfer(){
-  const amt=+($('#amt').value||0), to=$('#to').value.trim(); if(!amt||!to) return alert('أدخل المبلغ والجهة');
-  const db=LS.get('SEED'); db.wallet.txs.unshift({id:'TX-'+Math.floor(Math.random()*9999), type:'تحويل', amount:amt, to, date:new Date().toISOString().slice(0,10)}); db.wallet.balance-=amt; LS.set('SEED',db);
-  render();
-}
-
-route('#support', el=>{
-  const list = LS.get('SEED').tickets;
-  el.innerHTML = `
-    <div class="grid two">
-      <div class="card">
-        ${Toolbar('افتح تذكرة')}
-        <div class="row">
-          <div class="field"><label>الموضوع</label><input id="tSub"/></div>
-          <div class="field"><label>الوصف</label><textarea id="tDesc"></textarea></div>
-          <button class="btn primary" onclick="openTicket()">إرسال</button>
-        </div>
-      </div>
-      <div class="card">
-        ${Toolbar('تذاكري')}
-        ${table(list,[{key:'id',label:'#'},{key:'subject',label:'الموضوع'},{key:'status',label:'الحالة'},{key:'date',label:'التاريخ'}])}
-      </div>
-    </div>`;
-});
-function openTicket(){
-  const s=$('#tSub').value.trim(), d=$('#tDesc').value.trim(); if(!s) return;
-  const db=LS.get('SEED'); db.tickets.unshift({id:'SUP-'+Math.floor(Math.random()*9000+1000),subject:s,status:'مفتوح',date:new Date().toISOString().slice(0,10),desc:d}); LS.set('SEED',db);
-  render();
-}
-
-/* ========== Accounts (8) ========== */
-function accountShell(title, desc, resource){
-  return `
-    <div class="card">${Toolbar(title, `<div class="row">
-      <button class="btn primary" onclick="formProject()">+ مشروع</button>
-      <button class="btn" onclick="formEvent()">+ فعالية</button>
-      <button class="btn" onclick="formGrant()">+ دعوة تمويل</button>
-    </div>`)}<div class="muted" style="margin-bottom:10px">${desc}</div>
-    <div id="${resource}_list"></div></div>`;
-}
-function renderAccountTable(target, filter={}){
-  const data = (LS.get('SEED').projects||[]).filter(p=>{
-    if(filter.sector && p.sector!==filter.sector) return false;
-    return true;
-  });
-  const el = document.getElementById(target);
-  el.innerHTML = table(data,[{key:'title',label:'عنوان المشروع'},{key:'sector',label:'القطاع'},{key:'region',label:'المنطقة'},{key:'status',label:'الحالة'}]);
-}
-
-route('#account-emirate', el=>{
-  el.innerHTML = accountShell('حساب إمارة المنطقة','تصاريح، خرائط المشاريع حسب المحافظات، طلبات الرعاية.','emirate');
-  renderAccountTable('emirate_list');
-});
-route('#account-gov', el=>{
-  el.innerHTML = accountShell('حساب جهة حكومية','طرح تحديات، استقبال حلول، ربط بالأهداف الوطنية.','gov');
-  renderAccountTable('gov_list',{sector:'حكومي'});
-});
-route('#account-private', el=>{
-  el.innerHTML = accountShell('حساب القطاع الخاص','CSR، وظائف، رعاية فعاليات، تقارير أثر.','private');
-  renderAccountTable('private_list',{sector:'خاص'});
-});
-route('#account-ngo', el=>{
-  el.innerHTML = accountShell('حساب القطاع غير الربحي','إدارة مبادرات، استقبال تمويل وتطوع.','ngo');
-  renderAccountTable('ngo_list',{sector:'غير ربحي'});
-});
-route('#account-uni', el=>{
-  el.innerHTML = accountShell('حساب الجامعة','أبحاث قابلة للتطبيق، تدريب تعاوني، مرافق أكاديمية.','uni');
-  renderAccountTable('uni_list',{sector:'جامعات'});
-});
-route('#account-person', el=>{
-  el.innerHTML = `
-    <div class="grid two">
-      <div class="card">
-        ${Toolbar('ملفي')}
-        <div class="row">
-          <div class="field"><label>الاسم</label><input id="prsn_name"/></div>
-          <div class="field"><label>التخصص</label><input id="prsn_spec"/></div>
-          <div class="field"><label>المدينة</label><input id="prsn_city"/></div>
-          <div class="field"><label>رقم الهوية</label><input id="prsn_id"/></div>
-        </div>
-        <div class="row"><button class="btn primary" onclick="alert('تم الحفظ محليًا')">حفظ</button></div>
-      </div>
-      <div class="card">
-        ${Toolbar('فرصي')}
-        <div class="chips">${Pill('تطوع')}${Pill('تدريب')}${Pill('وظائف')}${Pill('استثمار')}</div>
-        <div id="prsn_opps"></div>
-      </div>
-    </div>`;
-  const data=LS.get('SEED').projects; $('#prsn_opps').innerHTML = table(data.slice(0,8),[{key:'title',label:'فرصة'},{key:'region',label:'المنطقة'},{key:'status',label:'الحالة'}]);
-});
-route('#account-funder', el=>{
-  el.innerHTML = accountShell('حساب الجهة المانحة','معايير المنح؛ مطابقة المشاريع؛ صرف ومتابعة.','funder');
-  renderAccountTable('funder_list');
-});
-route('#account-speaker', el=>{
-  el.innerHTML = `
-    <div class="grid two">
-      <div class="card">
-        ${Toolbar('متحدث/مدرب')}
-        <div class="row">
-          <div class="field"><label>الاسم</label><input id="sp_name"/></div>
-          <div class="field"><label>التخصص</label><input id="sp_spec"/></div>
-          <div class="field"><label>رابط السيرة</label><input id="sp_cv" placeholder="https://..."/></div>
-        </div>
-        <div class="row"><button class="btn primary" onclick="formSpeaker()">حفظ</button></div>
-      </div>
-      <div class="card">
-        ${Toolbar('دعوات وورش')}
-        <div id="sp_list"></div>
-      </div>
-    </div>`;
-  const list=LS.get('SEED').speakers||[]; $('#sp_list').innerHTML = table(list,[{key:'name',label:'الاسم'},{key:'spec',label:'التخصص'},{key:'city',label:'المدينة'},{key:'fee',label:'أتعاب'}]);
-});
-
-/* ========== Admin Center + Logo Uploader ========== */
-route('#admin-center', el=>{
-  el.innerHTML = `
-    <div class="grid two">
-      <div class="card">
-        ${Toolbar('مركز الإدارة')}
-        <div class="chips">${Pill('مشاريع')}${Pill('حلول')}${Pill('فعاليات')}${Pill('مرافق')}${Pill('تطوع')}${Pill('وظائف')}${Pill('منح')}${Pill('محفظة')}${Pill('AI')}${Pill('Integrations')}</div>
-      </div>
-
-      <div class="card">
-        ${Toolbar('تحميل الشعارات (Vision / تلبية / حصيف)')}
-        <p class="muted">ارفع ملفات PNG — تُحفظ محليًا (Base64) وتُعرض تلقائيًا في الهيدر.</p>
-        <div class="row">
-          <div class="field"><label>شعار رؤية 2030 (PNG)</label><input type="file" accept="image/png" id="upVision"/></div>
-          <div class="field"><label>شعار مبادرة تلبية (PNG)</label><input type="file" accept="image/png" id="upTalbiya"/></div>
-          <div class="field"><label>شعار حصيف (PNG)</label><input type="file" accept="image/png" id="upHasseef"/></div>
-        </div>
-        <div class="row">
-          <button class="btn primary" onclick="saveLogos()">حفظ الشعارات</button>
-          <button class="btn" onclick="clearLogos()">إزالة الشعارات المخزّنة</button>
-        </div>
-      </div>
-    </div>`;
-});
-
-async function fileToBase64(file){
-  return new Promise((res,rej)=>{
-    const r = new FileReader();
-    r.onload = ()=>res(r.result.split(',')[1]); // remove prefix data:image/png;base64,
-    r.onerror = rej;
-    r.readAsDataURL(file);
-  });
-}
-async function saveLogos(){
-  const vF = document.getElementById('upVision').files[0],
-        tF = document.getElementById('upTalbiya').files[0],
-        hF = document.getElementById('upHasseef').files[0];
-  if(vF) localStorage.setItem(LOGO_KEYS.vision, await fileToBase64(vF));
-  if(tF) localStorage.setItem(LOGO_KEYS.talbiya, await fileToBase64(tF));
-  if(hF) localStorage.setItem(LOGO_KEYS.hasseef, await fileToBase64(hF));
-  setLogosFromStorage();
-  alert('تم حفظ الشعارات محليًا ✅');
-}
-function clearLogos(){
-  Object.values(LOGO_KEYS).forEach(k=>localStorage.removeItem(k));
-  setLogosFromStorage();
-  alert('تمت إزالة الشعارات المخزّنة');
-}
-
-/* ========== Init ========== */
-</script>
+    // Fake submit for support form
+    const sendBtn = document.getElementById('sendBtn');
+    const sendResult = document.getElementById('sendResult');
+    if (sendBtn) {
+      sendBtn.addEventListener('click', ()=>{
+        const consent = document.getElementById('consent');
+        if (!consent.checked){
+          sendResult.textContent = 'فضلاً وافق على سياسة الخصوصية لإرسال الرسالة.';
+          sendResult.className = 'lg:col-span-2 text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3';
+          sendResult.classList.remove('hidden');
+          return;
+        }
+        sendResult.textContent = 'تم استلام رسالتك — شكرًا لمساهمتك في تحسين المنصة!';
+        sendResult.className = 'lg:col-span-2 text-sm text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3';
+        sendResult.classList.remove('hidden');
+      });
+    }
+  </script>
 </body>
 </html>
